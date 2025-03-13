@@ -1,3 +1,5 @@
+"use client"
+
 import Hero from "@/components/home/hero"
 import FeaturedProjects from "@/components/home/featured-projects"
 import Skills from "@/components/home/skills"

@@ -38,7 +38,7 @@ export default function Education() {
                     {education.logoUrl && (
                       <div className="relative w-10 h-10 mr-3 rounded-full overflow-hidden border">
                         <Image
-                          src="/placeholder.svg?height=40&width=40"
+                          src={education.logoUrl}
                           alt={education.institute}
                           fill
                           className="object-cover"
@@ -62,6 +62,7 @@ export default function Education() {
 
                 <p className="text-sm text-muted-foreground">{education.address}</p>
               </CardContent>
+              {/* need to add education.gpa as well */}
             </Card>
           </motion.div>
         ))}

@@ -88,7 +88,9 @@ export const config = {
         institute: "University of Mary Washington",
         address: "Fredericksburg, VA, USA",
         years: "2022 - 2026",
+        gpa: "3.84",
         logoUrl: "/education/umwlogo.jpg",
+        link: "https://umw.edu/",
       },
     ],
     skills: [

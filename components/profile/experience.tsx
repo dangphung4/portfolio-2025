@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import { config } from "@/lib/config"
 import { Card, CardContent } from "@/components/ui/card"
-import { Briefcase, ExternalLink, Calendar, MapPin } from "lucide-react"
+import { Briefcase, ExternalLink, Calendar } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 

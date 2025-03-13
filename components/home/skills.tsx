@@ -7,12 +7,8 @@ import { config } from "@/lib/config"
 import { 
   Code, 
   Database, 
-  Server, 
-  Cloud, 
-  Globe, 
   Layers, 
   Terminal, 
-  Cpu
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 

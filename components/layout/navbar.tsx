@@ -3,13 +3,12 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Menu, X } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
-import { Sun, Moon, Github, Linkedin, Mail } from "lucide-react"
+import { Sun, Moon} from "lucide-react"
 import { config } from "@/lib/config"
 import { cn } from "@/lib/utils"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion } from "framer-motion"
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)

@@ -5,7 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/layout/navbar";
 import MobileNav from "@/components/layout/mobile-nav";
 import Footer from "@/components/layout/footer";
-import ClientFavicon from "@/components/client-favicon";
 import type { Metadata } from "next";
 import { config } from "@/lib/config";
 
@@ -49,7 +48,6 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <ClientFavicon />
           <Navbar />
           {children}
           <MobileNav />

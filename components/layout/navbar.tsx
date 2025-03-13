@@ -108,9 +108,6 @@ export default function Navbar() {
             </Button>
           )}
           
-          <Button variant="ghost" size="icon" onClick={toggleMenu}>
-            <Menu className="h-5 w-5" />
-          </Button>
         </div>
       </div>
     </header>

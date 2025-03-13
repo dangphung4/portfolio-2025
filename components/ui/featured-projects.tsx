@@ -167,15 +167,4 @@ function ProjectCard({ project, isFirst }: { project: Project, isFirst: boolean 
   );
 }
 
-// Add a CSS class to hide scrollbar
-const style = document.createElement('style');
-style.textContent = `
-  .hide-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  .hide-scrollbar {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-`;
-document.head.appendChild(style); 
+/* The hide-scrollbar styles should be added to your global CSS file instead of direct DOM manipulation */ 

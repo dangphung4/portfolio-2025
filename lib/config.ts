@@ -158,6 +158,14 @@ export const config = {
   },
   projects: [
     {
+      appName: "Solus",
+      url: "https://soluscore.com/",
+      about: "Singular clarity for every decision",
+      tags: ["React.js", "TypeScript", "TailwindCSS", "Vite", "Firebase", "Dexie", "PWA", "Vercel"],
+      image: "/projects/solus.png",
+      codeUrl: "https://github.com/dangphung4/solus",
+    },
+    {
       appName: "Lucent",
       url: "https://skincaregod.vercel.app/",
       about: "A skin care tracking app I made for my girlfriend. Little did I know more people would use it lol",

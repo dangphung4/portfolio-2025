@@ -11,6 +11,9 @@ import { config } from "@/lib/config"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
+  icons: {
+    icon: "/favicon.png",
+  },
   title: config.app.site_name,
   description: config.app.description,
   keywords: config.app.keywords,

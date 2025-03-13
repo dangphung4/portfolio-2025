@@ -96,9 +96,9 @@ export default function Hero() {
                 sequence={[
                   "I build web applications",
                   1000,
-                  "I create mobile apps",
+                  "I learn new technologies",
                   1000,
-                  "I develop software solutions",
+                  "I'm a Junior in University",
                   1000,
                   `I'm a ${config.me.job}`,
                   1000,

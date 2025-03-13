@@ -239,7 +239,7 @@ export const config = {
       url: "https://github.com/dangphung4/HealthBuddy",
       about: "A web app I made for my grandma with dementia and alzheimer's so she can get medical advice from people she trusts.",
       tags: ["React.js", "Vite", "FastAPI", "OpenAI", "AWS", "Google Cloud"],
-      image: "/projects/healthbuddy.jpg",
+      image: "/projects/healthb.png",
       codeUrl: "https://github.com/dangphung4/HealthBuddy",
     },
     {

@@ -11,7 +11,7 @@ export const config = {
       "dang, dang phung, dangtphung, fullstack developer, mern stack developer, software developer, software engineer, frontend developer, portfolio, web developer, react developers, c# developer, javascript, dang phung official website, dang phung portfolio website, dang tri phung, dangtphung, dang-phung",
   },
   me: {
-    avatar: "/images/dangcat.webp",
+    avatar: "/images/dangphung.png",
     name: "Dang Phung",
     about: [
       "I'm a Software Engineer with solid expertise in the MERN stack.",
@@ -21,7 +21,7 @@ export const config = {
     ],
     job: "Junior Software Engineer",
     started: "2023-06-1",
-    yearsOfExperience: 1,
+    yearsOfExperience: getYearsOfExperience(new Date("2023-06-1")),
     stack: "MERN stack",
     hobby: "gamble my life savings",
     projectLink: "/projects",
@@ -211,6 +211,34 @@ export const config = {
       tags: ["React.js", "TypeScript", "Vite", "TailwindCSS", "Redux TK", "IBM Watson", "OpenAI", "FireBase"],
       image: "/images/projects/transcriptify.jpg",
     },
+    {
+      appName: "Bring The Menu",
+      url: "https://github.com/dangphung4/vue-patriothacks2023",
+      about: "An AI powered web app that finds coupons and discounts for restaurants near you.",
+      tags: ["Vue.js", "JavaScript", "Vite", "FastAPI", "MongoDB", "SKLearn", "AWS"],
+      image: "/images/projects/bringthemenu.jpg",
+    },
+    {
+      appName: "Foodieboy",
+      url: "https://github.com/dangphung4/foodieboy",
+      about: "My personal food blog where I share my favorite spots and items to eat.",
+      tags: ["React.js", "TypeScript","ChakraUI", "Vite", "Express.js", "Supabase", "PostgreSQL"],
+      image: "/images/projects/foodieboy.png",
+    },
+    {
+      appName: "Health Buddy",
+      url: "https://github.com/dangphung4/HealthBuddy",
+      about: "A web app I made for my grandma with dementia and alzheimer's so she can get medical advice from people she trusts.",
+      tags: ["React.js", "Vite", "FastAPI", "OpenAI", "AWS", "Google Cloud"],
+      image: "/images/projects/healthbuddy.jpg",
+    },
+    {
+      appName: "Quick Keys",
+      url: "https://github.com/dangphung4/typing-game",
+      about: "A typing test game based on the popular game monkeytype. Comes in dracula theme.",
+      tags: ["React.js", "TypeScript", "TailwindCSS", "Framer Motion"],
+      image: "/images/projects/quickkeys.png",
+    },
   ],
   testimonials: [
     {
@@ -240,3 +268,9 @@ export const config = {
   ],
 }
 
+function getYearsOfExperience(startDate: Date) {
+  const start = new Date(startDate);
+  const now = new Date();
+  const years = now.getFullYear() - start.getFullYear();
+  return years;
+}

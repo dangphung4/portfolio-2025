@@ -1,5 +1,4 @@
 import { Html, Head, Main, NextScript } from 'next/document'
-import { config } from '@/lib/config'
 
 export default function Document() {
   return (

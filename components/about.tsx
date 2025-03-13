@@ -68,7 +68,7 @@ export default function About() {
                   </div>
                   <h4 className="text-xl font-semibold mb-2">Developer</h4>
                   <p className="text-muted-foreground text-sm">
-                    I'm a {config.me.job} with {config.me.yearsOfExperience}+ years of experience building web and
+                    I&apos;m a {config.me.job} with {config.me.yearsOfExperience}+ years of experience building web and
                     mobile applications.
                   </p>
                 </CardContent>
@@ -107,7 +107,7 @@ export default function About() {
                   </div>
                   <h4 className="text-xl font-semibold mb-2">Passion</h4>
                   <p className="text-muted-foreground text-sm">
-                    I enjoy learning new technologies and building projects that solve real-world problems. When I'm not
+                    I enjoy learning new technologies and building projects that solve real-world problems. When I&apos;m not
                     coding, I {config.me.hobby}.
                   </p>
                 </CardContent>

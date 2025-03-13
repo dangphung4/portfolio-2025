@@ -17,7 +17,7 @@ export default function ContactInfo() {
         <CardContent className="p-6 flex flex-col h-full">
           <h3 className="text-2xl font-bold mb-6">Contact Information</h3>
           <p className="text-muted-foreground mb-8">
-            Feel free to reach out to me through any of these platforms. I'm always open to discussing new projects,
+            Feel free to reach out to me through any of these platforms. I&apos;m always open to discussing new projects,
             creative ideas, or opportunities to be part of your vision.
           </p>
 

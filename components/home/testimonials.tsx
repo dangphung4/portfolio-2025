@@ -73,7 +73,7 @@ export default function Testimonials() {
                           </div>
 
                           <p className="text-muted-foreground text-base md:text-lg italic flex-grow mb-6">
-                            "{testimonial.message}"
+                            &quot;{testimonial.message}&quot;
                           </p>
 
                           <div className="flex items-center">

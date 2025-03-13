@@ -1,23 +1,17 @@
 "use client"
 
 import { useState } from "react"
-import { config } from "@/lib/config"
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-export default function ProjectsFilter({ onFilterChange }) {
+export default function ProjectsFilter({ onFilterChange }: { onFilterChange: (filter: string) => void }) {
   const [activeFilter, setActiveFilter] = useState("all")
-
-  // Extract unique tags from all projects
-  const allTags = Array.from(
-    new Set(config.projects.flatMap((project) => project.tags.map((tag) => tag.toLowerCase()))),
-  )
 
   // Select most common tags for filters
   const popularTags = ["React.js", "TypeScript", "Next.js", "Node.js", "MongoDB"]
 
-  const handleFilterClick = (filter) => {
+  const handleFilterClick = (filter: string) => {
     setActiveFilter(filter)
     if (onFilterChange) {
       onFilterChange(filter)
@@ -45,7 +39,7 @@ export default function ProjectsFilter({ onFilterChange }) {
   )
 }
 
-function FilterButton({ children, isActive, onClick }) {
+function FilterButton({ children, isActive, onClick }: { children: React.ReactNode, isActive: boolean, onClick: () => void }) {
   return (
     <Button
       variant="ghost"

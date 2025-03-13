@@ -176,7 +176,7 @@ export default function ProfileSkills() {
             animate={isInView ? { opacity: 1 } : {}}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
-            A comprehensive list of technologies I've worked with
+            A comprehensive list of technologies I&apos;ve worked with
           </motion.p>
         </div>
 

@@ -5,7 +5,7 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
-import { Sun, Moon} from "lucide-react"
+import { Sun, Moon, Menu } from "lucide-react"
 import { config } from "@/lib/config"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
@@ -94,7 +94,10 @@ export default function Navbar() {
           <Button variant="ghost" size="icon" onClick={toggleTheme} className="mr-2">
             {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
-
+          
+          <Button variant="ghost" size="icon" onClick={toggleMenu}>
+            <Menu className="h-5 w-5" />
+          </Button>
         </div>
       </div>
     </header>

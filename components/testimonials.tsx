@@ -55,7 +55,7 @@ export default function Testimonials() {
                     <Quote className="h-8 w-8 opacity-50" />
                   </div>
 
-                  <p className="text-muted-foreground text-sm italic flex-grow mb-6">"{testimonial.message}"</p>
+                  <p className="text-muted-foreground text-sm italic flex-grow mb-6">&quot;{testimonial.message}&quot;</p>
 
                   <div className="flex items-center">
                     <div className="relative w-12 h-12 rounded-full overflow-hidden border mr-4">

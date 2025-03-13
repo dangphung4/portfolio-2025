@@ -4,7 +4,7 @@ export const config = {
     author: "Dang Phung",
     twitter_handle: "@dangphung4",
     description:
-      "Undergraduate computer science student and software engineer with 1 year professional experience. This is my portfolio website.",
+      `Undergraduate computer science student and software engineer with ${getYearsOfExperience(new Date("2023-06-1"))} years of professional experience. This is my portfolio website.`,
     long_description:
       "Hey I'm Dang, a computer science undergraduate pursuing my bachelors at the University of Mary Washington. I am also a software developer with 1 year of professional experience. I am passionate about building web applications and solving real-world problems. Check out my portfolio website to know more about me.",
     keywords:
@@ -283,5 +283,6 @@ function getYearsOfExperience(startDate: Date) {
   const start = new Date(startDate);
   const now = new Date();
   const years = now.getFullYear() - start.getFullYear();
-  return years;
+
+  return years + (now.getMonth() - start.getMonth()) / 12;
 }

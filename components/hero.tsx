@@ -85,7 +85,7 @@ export default function Hero() {
               variants={itemVariants}
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
             >
-              Hi, I'm{" "}
+              Hi, I&apos;m{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent animate-gradient">
                 {config.me.name}
               </span>

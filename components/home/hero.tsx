@@ -10,12 +10,6 @@ import Image from "next/image"
 import { TypeAnimation } from "react-type-animation"
 import { cn } from "@/lib/utils"
 
-// Custom CSS classes
-const customStyles = {
-  animateGradient: "animate-gradient",
-  animateSpinSlow: "animate-spin-slow",
-}
-
 export default function Hero() {
   const controls = useAnimation()
   const ref = useRef(null)
@@ -24,8 +18,6 @@ export default function Hero() {
   const [activeSkill, setActiveSkill] = useState<number | null>(null)
   const [yearsOfExperience, setYearsOfExperience] = useState(0)
   
-  // Mouse tracking for parallax effect
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 })
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
   
@@ -71,7 +63,6 @@ export default function Hero() {
       const posX = clientX - centerX
       const posY = clientY - centerY
       
-      setMousePosition({ x: clientX, y: clientY })
       mouseX.set(posX)
       mouseY.set(posY)
     }

@@ -132,7 +132,10 @@ export default function FeaturedProjects() {
                 variant="outline"
                 size="icon"
                 className="absolute left-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-background/80 backdrop-blur-sm"
-                onClick={(e) => e.stopPropagation() || instanceRef.current?.prev()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  instanceRef.current?.prev();
+                }}
                 disabled={currentSlide === 0}
               >
                 <ChevronLeft className="h-4 w-4" />
@@ -142,7 +145,10 @@ export default function FeaturedProjects() {
                 variant="outline"
                 size="icon"
                 className="absolute right-4 top-1/2 -translate-y-1/2 z-10 rounded-full bg-background/80 backdrop-blur-sm"
-                onClick={(e) => e.stopPropagation() || instanceRef.current?.next()}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  instanceRef.current?.next();
+                }}
                 disabled={currentSlide === instanceRef.current.track.details.slides.length - 1}
               >
                 <ChevronRight className="h-4 w-4" />
@@ -154,7 +160,9 @@ export default function FeaturedProjects() {
         <div className="flex justify-center mt-8">
           {loaded && instanceRef.current && (
             <div className="flex gap-2">
-              {[...Array(instanceRef.current.track.details.slides.length).keys()].map((idx) => (
+              {Array.from(
+                { length: instanceRef.current.track.details.slides.length },
+                (_, idx) => (
                 <button
                   key={idx}
                   onClick={() => instanceRef.current?.moveToIdx(idx)}

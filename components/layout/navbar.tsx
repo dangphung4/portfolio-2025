@@ -5,19 +5,17 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
 import { useTheme } from "next-themes"
-import { Sun, Moon, Menu } from "lucide-react"
+import { Sun, Moon } from "lucide-react"
 import { config } from "@/lib/config"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 
 export default function Navbar() {
-  const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const pathname = usePathname()
 
-  // After mounting, we can safely show the UI that depends on theme
   useEffect(() => {
     setMounted(true)
   }, [])
@@ -29,10 +27,6 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
-
-  const toggleMenu = () => {
-    setIsOpen(!isOpen)
-  }
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark")

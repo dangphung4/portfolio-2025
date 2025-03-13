@@ -235,14 +235,6 @@ export const config = {
       codeUrl: "https://github.com/dangphung4/vue-patriothacks2023",
     },
     {
-      appName: "Foodieboy",
-      url: "https://github.com/dangphung4/foodieboy",
-      about: "My personal food blog where I share my favorite spots and items to eat.",
-      tags: ["React.js", "TypeScript","ChakraUI", "Vite", "Express.js", "Supabase", "PostgreSQL"],
-      image: "/projects/foodieboy.png",
-      codeUrl: "https://github.com/dangphung4/foodieboy",
-    },
-    {
       appName: "Health Buddy",
       url: "https://github.com/dangphung4/HealthBuddy",
       about: "A web app I made for my grandma with dementia and alzheimer's so she can get medical advice from people she trusts.",

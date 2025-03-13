@@ -74,7 +74,7 @@ export default function ContactInfo() {
               </div>
               <div>
                 <p className="text-sm text-muted-foreground">Location</p>
-                <p className="font-medium">Fredericksburg, VA, USA</p>
+                <p className="font-medium">Chantilly, VA, USA</p>
               </div>
             </div>
           </div>

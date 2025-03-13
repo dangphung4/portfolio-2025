@@ -160,7 +160,8 @@ export const config = {
       url: "https://skincaregod.vercel.app/",
       about: "A skin care tracking app I made for my girlfriend. Little did I know more people would use it lol",
       tags: ["React.js", "TypeScript", "TailwindCSS", "Vite", "Firebase", "Dexie", "PWA", "Vercel"],
-      image: "/images/projects/lucent.png",
+      image: "/projects/lucent.png",
+      codeUrl: "https://github.com/dangphung4/lucent",
     },
     {
       appName: "Chardle",
@@ -168,7 +169,7 @@ export const config = {
       about:
         "A daily character guessing game featuring characters from popular series like Avatar: The Last Airbender, Blue Lock, and Percy Jackson. Built with a focus on daily challenges and progress tracking.",
       tags: ["React.js", "TypeScript", "TailwindCSS", "Express.js", "MongoDB", "AWS"],
-      image: "/images/projects/chardle.png",
+      image: "/projects/chardle.png",
     },
     {
       appName: "Leaflet",
@@ -176,7 +177,8 @@ export const config = {
       about:
         "My personal alternative to obidian, notion & apple notes. Its a PWA first app, so I can use it on my phone, tablet or laptop.Built with React, TailwindCSS, Vite, and Cloudfare/Vercel.",
       tags: ["React.js", "TypeScript", "Vite", "TailwindCSS", "Cloudfare", "Vercel", "Firebase"],
-      image: "/images/projects/notes.png",
+      image: "/projects/notes.png",
+      codeUrl: "https://github.com/dangphung4/leaflet",
     },
     {
       appName: "Manipulate AI",
@@ -194,7 +196,8 @@ export const config = {
         "OpenAI",
         "AWS",
       ],
-      image: "/images/projects/manipulate.jpg",
+      image: "/projects/manipulate.jpg",
+      codeUrl: "https://github.com/dangphung4/manipulate",
     },
     {
       appName: "Pomotivity",
@@ -202,47 +205,53 @@ export const config = {
       about:
         "A productivity web app that uses the Pomodoro technique to help users stay focused and manage their time effectively.",
       tags: ["React.js", "TypeScript", "Vite", "MaterialUI", "Express.js", "Supabase", "PostgreSQL"],
-      image: "/images/projects/pomotivitylogo.jpg",
+      image: "/projects/pomotivitylogo.jpg",
+      codeUrl: "https://github.com/dangphung4/pomodoro-insiohacks2023",
     },
     {
       appName: "Transcriptify",
       url: "https://github.com/dangphung4/voice-notes",
       about: "A web app that transcribes voice notes to text with real time speech recognition.",
       tags: ["React.js", "TypeScript", "Vite", "TailwindCSS", "Redux TK", "IBM Watson", "OpenAI", "FireBase"],
-      image: "/images/projects/transcriptify.jpg",
+      image: "/projects/transcriptify.jpg",
+      codeUrl: "https://github.com/dangphung4/voice-notes",
     },
     {
       appName: "Bring The Menu",
       url: "https://github.com/dangphung4/vue-patriothacks2023",
       about: "An AI powered web app that finds coupons and discounts for restaurants near you.",
       tags: ["Vue.js", "JavaScript", "Vite", "FastAPI", "MongoDB", "SKLearn", "AWS"],
-      image: "/images/projects/bringthemenu.jpg",
+      image: "/projects/bringthemenu.jpg",
+      codeUrl: "https://github.com/dangphung4/vue-patriothacks2023",
     },
     {
       appName: "Foodieboy",
       url: "https://github.com/dangphung4/foodieboy",
       about: "My personal food blog where I share my favorite spots and items to eat.",
       tags: ["React.js", "TypeScript","ChakraUI", "Vite", "Express.js", "Supabase", "PostgreSQL"],
-      image: "/images/projects/foodieboy.png",
+      image: "/projects/foodieboy.png",
+      codeUrl: "https://github.com/dangphung4/foodieboy",
     },
     {
       appName: "Health Buddy",
       url: "https://github.com/dangphung4/HealthBuddy",
       about: "A web app I made for my grandma with dementia and alzheimer's so she can get medical advice from people she trusts.",
       tags: ["React.js", "Vite", "FastAPI", "OpenAI", "AWS", "Google Cloud"],
-      image: "/images/projects/healthbuddy.jpg",
+      image: "/projects/healthbuddy.jpg",
+      codeUrl: "https://github.com/dangphung4/HealthBuddy",
     },
     {
       appName: "Quick Keys",
       url: "https://github.com/dangphung4/typing-game",
       about: "A typing test game based on the popular game monkeytype. Comes in dracula theme.",
       tags: ["React.js", "TypeScript", "TailwindCSS", "Framer Motion"],
-      image: "/images/projects/quickkeys.png",
+      image: "/projects/quickkeys.png",
+      codeUrl: "https://github.com/dangphung4/typing-game",
     },
   ],
   testimonials: [
     {
-      avatar: "/images/testimonials/tommyn.jpeg",
+      avatar: "/testimonials/tommyn.jpeg",
       role: "Cybersecurity Intern at Crosshair Cyber",
       name: "Tommy Nguyen",
       message:
@@ -250,7 +259,7 @@ export const config = {
       link: "https://www.linkedin.com/in/tommy-nguyen14/",
     },
     {
-      avatar: "/images/testimonials/billyh.jpeg",
+      avatar: "/testimonials/billyh.jpeg",
       role: "Software Engineer at National Institute for Aviation Research",
       name: "Billy Hoang",
       message:
@@ -258,7 +267,7 @@ export const config = {
       link: "https://www.linkedin.com/in/billyhoang100/",
     },
     {
-      avatar: "/images/testimonials/jasontay.jpeg",
+      avatar: "/testimonials/jasontay.jpeg",
       role: "Software Engineer at Otsuka Pharmaceutical",
       name: "Jason Taylor",
       message:

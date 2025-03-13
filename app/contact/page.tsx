@@ -6,7 +6,7 @@ export default function ContactPage() {
   return (
     <main className="min-h-screen bg-background pt-20">
       <div className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500">
+        <h1 className="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
           Get In Touch
         </h1>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">

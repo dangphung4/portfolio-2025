@@ -11,7 +11,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center">
           <div className="mb-6 md:mb-0">
             <Link href="/" className="text-2xl font-bold">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500">DP</span>
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">DP</span>
             </Link>
             <p className="text-muted-foreground text-sm mt-2 max-w-md">{config.app.description}</p>
           </div>

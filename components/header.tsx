@@ -39,7 +39,7 @@ export default function Header() {
     >
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold">
-          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500">DP</span>
+          <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">DP</span>
         </Link>
 
         {/* Desktop Navigation */}

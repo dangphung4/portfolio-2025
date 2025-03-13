@@ -45,7 +45,7 @@ export default function Navbar() {
       <div className="container mx-auto px-4 flex justify-between items-center">
         <Link href="/" className="text-2xl font-bold relative z-20">
           <motion.span
-            className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500"
+            className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}

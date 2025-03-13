@@ -13,9 +13,11 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   icons: {
     icon: [
-      { url: '/favicon.ico' },
-      { url: '/icon.png', type: 'image/png'},
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', sizes: '32x32', type: 'image/png' },
     ],
+    shortcut: '/favicon.ico',
+    apple: '/apple-icon.png',
   },
   title: config.app.site_name,
   description: config.app.description,
@@ -44,6 +46,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+      </head>
       <body className={inter.className}>
         <ThemeProvider
           attribute="class"

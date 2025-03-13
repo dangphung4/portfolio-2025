@@ -11,7 +11,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Github, Linkedin, Mail, Send } from "lucide-react"
 import { config } from "@/lib/config"
 import Link from "next/link"
-import { useToast } from "@/components/ui/use-toast"
+import { useToast } from "@/hooks/use-toast"
 
 export default function Contact() {
   const ref = useRef(null)

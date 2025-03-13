@@ -86,7 +86,7 @@ export default function Hero() {
               className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
             >
               Hi, I'm{" "}
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary to-purple-500">
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent animate-gradient">
                 {config.me.name}
               </span>
             </motion.h1>

@@ -102,7 +102,11 @@ export default function About() {
                   <div className="bg-primary/10 p-3 rounded-full mb-3">
                     <Briefcase className="h-6 w-6 text-primary" />
                   </div>
-                  <span className="text-2xl font-bold">{config.me.yearsOfExperience}+</span>
+                  <span className="text-2xl font-bold">
+                    {typeof config.me.yearsOfExperience === 'number' && !isNaN(config.me.yearsOfExperience) 
+                      ? Math.floor(config.me.yearsOfExperience) 
+                      : 1}+
+                  </span>
                   <span className="text-sm text-muted-foreground">Years Experience</span>
                 </div>
 

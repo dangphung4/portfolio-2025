@@ -68,7 +68,11 @@ export default function About() {
                   </div>
                   <h4 className="text-xl font-semibold mb-2">Developer</h4>
                   <p className="text-muted-foreground text-sm">
-                    I&apos;m a {config.me.job} with {config.me.yearsOfExperience}+ years of experience building web and
+                    I&apos;m a {config.me.job} with {
+                      typeof config.me.yearsOfExperience === 'number' && !isNaN(config.me.yearsOfExperience) 
+                        ? Math.floor(config.me.yearsOfExperience) 
+                        : 1
+                    }+ years of experience building web and
                     mobile applications.
                   </p>
                 </CardContent>

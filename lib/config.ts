@@ -4,7 +4,7 @@ export const config = {
     author: "Dang Phung",
     twitter_handle: "@dangphung4",
     description:
-      `Undergraduate computer science student and software engineer with ${getYearsOfExperience(new Date("2023-06-1"))} years of professional experience. This is my portfolio website.`,
+      `Undergraduate computer science student and software engineer with ${getYearsOfExperience(new Date("2023-06-01"))} years of professional experience. This is my portfolio website.`,
     long_description:
       "Hey I'm Dang, a computer science undergraduate pursuing my bachelors at the University of Mary Washington. I am also a software developer with 1 year of professional experience. I am passionate about building web applications and solving real-world problems. Check out my portfolio website to know more about me.",
     keywords:
@@ -16,12 +16,12 @@ export const config = {
     about: [
       "I'm a Junior Software engineer who loves cheesecake.",
       "I am currently pursing a B.Sc in Computer Science at the University of Mary Washington.",
-      "Currently, I am working as a Software Engineer Intern at GDMS.",
+      "Currently, I am working as a Junior Software Engineer at Recro Corporation.",
       "I enjoy learning new technologies and building projects that solve real-world problems.",
     ],
     job: "Junior Software Engineer",
-    started: "2023-06-1",
-    yearsOfExperience: getYearsOfExperience(new Date("2023-06-1")),
+    started: "2023-06-01",
+    yearsOfExperience: getYearsOfExperience(new Date("2023-06-01")),
     stack: "MERN stack",
     hobby: "gamble my life savings",
     projectLink: "/projects",
@@ -280,9 +280,27 @@ export const config = {
 }
 
 function getYearsOfExperience(startDate: Date) {
-  const start = new Date(startDate);
-  const now = new Date();
-  const years = now.getFullYear() - start.getFullYear();
-
-  return years + (now.getMonth() - start.getMonth()) / 12;
+  try {
+    // Ensure we're working with a valid date object
+    const start = startDate instanceof Date ? startDate : new Date(startDate);
+    
+    // Check if the date is valid
+    if (isNaN(start.getTime())) {
+      console.error("Invalid start date provided to getYearsOfExperience");
+      return 1; // Fallback to a default value
+    }
+    
+    const now = new Date();
+    const years = now.getFullYear() - start.getFullYear();
+    const monthDiff = now.getMonth() - start.getMonth();
+    
+    // Calculate precise years with month difference
+    const preciseYears = years + (monthDiff / 12);
+    
+    // Return with 1 decimal place
+    return Math.round(preciseYears * 10) / 10;
+  } catch (error) {
+    console.error("Error calculating years of experience:", error);
+    return 1; // Fallback to a default value
+  }
 }

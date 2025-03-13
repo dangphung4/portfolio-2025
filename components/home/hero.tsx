@@ -47,11 +47,27 @@ export default function Hero() {
     }
     
     // Calculate years of experience
-    const startDate = new Date(config.me.started)
-    const currentDate = new Date()
-    const diffTime = Math.abs(currentDate.getTime() - startDate.getTime())
-    const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25)
-    setYearsOfExperience(Math.floor(diffYears))
+    try {
+      const startDateStr = config.me.started;
+      // Ensure proper date format (YYYY-MM-DD)
+      const formattedStartDate = startDateStr.replace(/(\d+)-(\d+)-(\d+)/, '$1-$2-$3').padStart(10, '0');
+      const startDate = new Date(formattedStartDate);
+      
+      // Check if date is valid
+      if (!isNaN(startDate.getTime())) {
+        const currentDate = new Date();
+        const diffTime = Math.abs(currentDate.getTime() - startDate.getTime());
+        const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25);
+        setYearsOfExperience(Math.floor(diffYears));
+      } else {
+        // Fallback to the value from config if date parsing fails
+        console.error("Invalid date format in hero component");
+        setYearsOfExperience(Math.floor(config.me.yearsOfExperience) || 1);
+      }
+    } catch (error) {
+      console.error("Error calculating years of experience in hero:", error);
+      setYearsOfExperience(Math.floor(config.me.yearsOfExperience) || 1);
+    }
     
     // Mouse move handler for parallax effect
     const handleMouseMove = (e: MouseEvent) => {

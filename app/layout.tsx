@@ -5,20 +5,13 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/layout/navbar";
 import MobileNav from "@/components/layout/mobile-nav";
 import Footer from "@/components/layout/footer";
+import ClientFavicon from "@/components/client-favicon";
 import type { Metadata } from "next";
 import { config } from "@/lib/config";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  icons: {
-    icon: [
-      { url: '/favicon.ico', sizes: 'any' },
-      { url: '/icon.png', sizes: '32x32', type: 'image/png' },
-    ],
-    shortcut: '/favicon.ico',
-    apple: '/apple-icon.png',
-  },
   title: config.app.site_name,
   description: config.app.description,
   keywords: config.app.keywords,
@@ -56,6 +49,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <ClientFavicon />
           <Navbar />
           {children}
           <MobileNav />

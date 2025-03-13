@@ -9,7 +9,7 @@ export default function ProjectsPage() {
         <h1 className="text-4xl md:text-5xl font-bold mb-8 bg-clip-text text-transparent bg-gradient-to-r from-primary to-secondary">
           My Projects
         </h1>
-        <ProjectsFilter onFilterChange={() => {}} />
+        <ProjectsFilter/>
         <ProjectsGrid />
       </div>
       <Toaster />

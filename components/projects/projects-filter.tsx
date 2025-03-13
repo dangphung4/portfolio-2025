@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { cn } from "@/lib/utils"
 
-export default function ProjectsFilter({ onFilterChange }: { onFilterChange: (filter: string) => void }) {
+export default function ProjectsFilter() {
   const [activeFilter, setActiveFilter] = useState("all")
 
   // Select most common tags for filters
@@ -13,9 +13,6 @@ export default function ProjectsFilter({ onFilterChange }: { onFilterChange: (fi
 
   const handleFilterClick = (filter: string) => {
     setActiveFilter(filter)
-    if (onFilterChange) {
-      onFilterChange(filter)
-    }
   }
 
   return (

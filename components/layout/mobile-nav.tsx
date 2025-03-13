@@ -10,7 +10,12 @@ import { motion } from "framer-motion"
 export default function MobileNav() {
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
+  const [mounted, setMounted] = useState(false)
   const pathname = usePathname()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -36,6 +41,10 @@ export default function MobileNav() {
     { name: "Projects", icon: Code, href: "/projects" },
     { name: "Contact", icon: Mail, href: "/contact" },
   ]
+
+  if (!mounted) {
+    return null; // Return nothing on the server side
+  }
 
   return (
     <motion.div

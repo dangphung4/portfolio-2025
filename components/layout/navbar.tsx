@@ -13,8 +13,14 @@ import { motion } from "framer-motion"
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const pathname = usePathname()
+
+  // After mounting, we can safely show the UI that depends on theme
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +39,9 @@ export default function Navbar() {
   }
 
   const navLinks = config.pages.filter((page) => !page.displayInDrawerOnly && !page.external)
+
+  // Render a placeholder or nothing until mounted
+  const ThemeIcon = mounted ? (theme === "dark" ? Sun : Moon) : null
 
   return (
     <header
@@ -85,15 +94,19 @@ export default function Navbar() {
             </Button>
           </Link>
 
-          <Button variant="ghost" size="icon" onClick={toggleTheme} className="ml-2">
-            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </Button>
+          {mounted && (
+            <Button variant="ghost" size="icon" onClick={toggleTheme} className="ml-2">
+              {ThemeIcon && <ThemeIcon className="h-5 w-5" />}
+            </Button>
+          )}
         </nav>
 
         <div className="md:hidden">
-          <Button variant="ghost" size="icon" onClick={toggleTheme} className="mr-2">
-            {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
-          </Button>
+          {mounted && (
+            <Button variant="ghost" size="icon" onClick={toggleTheme} className="mr-2">
+              {ThemeIcon && <ThemeIcon className="h-5 w-5" />}
+            </Button>
+          )}
           
           <Button variant="ghost" size="icon" onClick={toggleMenu}>
             <Menu className="h-5 w-5" />

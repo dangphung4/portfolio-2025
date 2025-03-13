@@ -22,12 +22,25 @@ export const metadata: Metadata = {
     title: config.app.site_name,
     description: config.app.long_description,
     siteName: config.app.site_name,
+    images: [
+      {
+        url: `${config.website}/dangphung.jpg`,
+        width: 1200,
+        height: 630,
+        alt: config.app.author,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: config.app.site_name,
     description: config.app.description,
     creator: config.app.twitter_handle,
+    images: [`${config.website}/dangphung.jpg`],
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
 };
 
@@ -40,6 +53,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+        <meta property="og:image" content={`${config.website}/dangphung.jpg`} />
+        <meta name="twitter:image" content={`${config.website}/dangphung.jpg`} />
       </head>
       <body className={inter.className}>
         <ThemeProvider

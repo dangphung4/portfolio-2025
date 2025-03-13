@@ -91,116 +91,13 @@ export default function Navbar() {
           </Button>
         </nav>
 
-        {/* Mobile Menu Button - Only visible on medium and up screens */}
         <div className="md:hidden">
           <Button variant="ghost" size="icon" onClick={toggleTheme} className="mr-2">
             {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </Button>
 
-          <Button variant="ghost" size="icon" onClick={toggleMenu} className="relative z-20">
-            <AnimatePresence mode="wait">
-              {isOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ opacity: 0, rotate: -90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: 90 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X className="h-6 w-6" />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ opacity: 0, rotate: 90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  exit={{ opacity: 0, rotate: -90 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu className="h-6 w-6" />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </Button>
         </div>
       </div>
-
-      {/* Mobile Navigation Overlay */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            className="fixed inset-0 bg-background/95 backdrop-blur-md z-10 md:hidden flex flex-col justify-center"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            <div className="container mx-auto px-4 py-4">
-              <nav className="flex flex-col items-center space-y-6 text-center">
-                {navLinks.map((page, index) => {
-                  const isActive = pathname === page.url
-
-                  return (
-                    <motion.div
-                      key={index}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 + index * 0.1 }}
-                    >
-                      <Link
-                        href={page.url}
-                        className={cn(
-                          "text-2xl font-medium transition-colors",
-                          isActive ? "text-primary" : "text-muted-foreground",
-                        )}
-                        onClick={() => setIsOpen(false)}
-                      >
-                        {page.title}
-                      </Link>
-                    </motion.div>
-                  )
-                })}
-
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.5 }}>
-                  <Link
-                    href={config.me.resumeLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => setIsOpen(false)}
-                  >
-                    <Button variant="outline" className="rounded-full">
-                      Resume
-                    </Button>
-                  </Link>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.6 }}
-                  className="flex space-x-6 pt-6"
-                >
-                  <Link href={config.socials.GitHub} target="_blank" rel="noopener noreferrer" className="group">
-                    <div className="bg-muted hover:bg-primary/20 p-3 rounded-full transition-colors">
-                      <Github className="h-6 w-6 group-hover:text-primary transition-colors" />
-                    </div>
-                  </Link>
-                  <Link href={config.socials.LinkedIn} target="_blank" rel="noopener noreferrer" className="group">
-                    <div className="bg-muted hover:bg-primary/20 p-3 rounded-full transition-colors">
-                      <Linkedin className="h-6 w-6 group-hover:text-primary transition-colors" />
-                    </div>
-                  </Link>
-                  <Link href={config.socials.Email} target="_blank" rel="noopener noreferrer" className="group">
-                    <div className="bg-muted hover:bg-primary/20 p-3 rounded-full transition-colors">
-                      <Mail className="h-6 w-6 group-hover:text-primary transition-colors" />
-                    </div>
-                  </Link>
-                </motion.div>
-              </nav>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   )
 }

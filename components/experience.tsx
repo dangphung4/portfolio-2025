@@ -65,7 +65,7 @@ export default function Experience() {
                             {experience.logoUrl && (
                               <div className="relative w-10 h-10 mr-3 rounded-full overflow-hidden border">
                                 <Image
-                                  src="/placeholder.svg?height=40&width=40"
+                                  src={experience.logoUrl}
                                   alt={experience.company}
                                   fill
                                   className="object-cover"
@@ -124,7 +124,7 @@ export default function Experience() {
                           {education.logoUrl && (
                             <div className="relative w-10 h-10 mr-3 rounded-full overflow-hidden border">
                               <Image
-                                src="/placeholder.svg?height=40&width=40"
+                                src={education.logoUrl}
                                 alt={education.institute}
                                 fill
                                 className="object-cover"

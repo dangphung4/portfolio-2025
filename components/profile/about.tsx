@@ -77,7 +77,7 @@ export default function About() {
           <Card className="h-full border-primary/20 hover:border-primary/50 transition-colors overflow-hidden">
             <CardContent className="p-0">
               <div className="relative aspect-[3/4] w-full">
-                <Image src="/placeholder.svg?height=600&width=450" alt={config.me.name} fill className="object-cover" />
+                <Image src="/dangphungfull.jpg" alt={config.me.name} fill className="object-cover" />
               </div>
             </CardContent>
           </Card>

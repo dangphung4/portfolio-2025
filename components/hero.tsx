@@ -78,7 +78,7 @@ export default function Hero() {
           >
             <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
               <div className="h-1 w-12 bg-primary rounded-full"></div>
-              <span className="text-primary font-medium">Software Engineer</span>
+              <span className="text-primary font-medium">Junior Software Engineer</span>
             </motion.div>
 
             <motion.h1

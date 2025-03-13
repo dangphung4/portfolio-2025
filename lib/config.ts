@@ -14,9 +14,9 @@ export const config = {
     avatar: "/images/dangphung.png",
     name: "Dang Phung",
     about: [
-      "I'm a Software Engineer with solid expertise in the MERN stack.",
+      "I'm a Junior Software engineer who loves cheesecake.",
       "I am currently pursing a B.Sc in Computer Science at the University of Mary Washington.",
-      "Currently, I am interning for GDMS as a Software Engineer Intern.",
+      "Currently, I am working as a Software Engineer Intern at GDMS.",
       "I enjoy learning new technologies and building projects that solve real-world problems.",
     ],
     job: "Junior Software Engineer",
@@ -33,7 +33,7 @@ export const config = {
         years: "June 2024 - Present",
         title: "Software Engineer Intern",
         company: "General Dynamics Mission Systems (Hybrid)",
-        logoUrl: "/images/companies/gd-logo.jpg",
+        logoUrl: "/companies/gd-logo.jpg",
         link: "https://gdmissionsystems.com/",
         contributions: [
           "Spearheaded the development of a multi-repository nuclear monitoring system, building the primary GUI with Next.js, while architecting additional monitoring interfaces using Angular for global nuclear station tracking",
@@ -47,7 +47,7 @@ export const config = {
         years: "Jan 2024 - Present",
         title: "Junior Software Engineer",
         company: "Recro Corporation (Remote)",
-        logoUrl: "/images/companies/recro_co_logo-1.jpeg",
+        logoUrl: "/companies/recro_co_logo-1.jpeg",
         link: "https://recro.com/",
         contributions: [
           "Architected and developed a complete company website overhaul using Statamic, Laravel, PHP & TailwindCSS, implementing a robust CMS system that enabled content management and improved site performance, resulting in an increase of 300% in user traffic",
@@ -61,7 +61,7 @@ export const config = {
         years: "Aug 2023 - Jan 2024",
         title: "Associate Software Engineer",
         company: "Mofilo LLC. (Remote)",
-        logoUrl: "/images/companies/mofilo_logo.png",
+        logoUrl: "/companies/mofilo_logo.png",
         link: "https://mofilo.app/",
         contributions: [
           "Led the development of a fitness mobile app using React Native and integrated microservices with AWS Amplify, Lambda, Ec2, AppSync, and DynamoDB, resulting in a 20% reduction in response time",
@@ -73,7 +73,7 @@ export const config = {
         years: "June 2023 - Aug 2024",
         title: "Software Engineer Intern",
         company: "Bridge Core (Hybrid)",
-        logoUrl: "/images/companies/bcore-mark.png",
+        logoUrl: "/companies/bcore-mark.png",
         link: "https://bcore.com/",
         contributions: [
           "Spearheaded the development of an autonomous bidirectional sync API with Bluescape, boosting data efficiency by over 30% and improving data efficiency by 40%",
@@ -88,7 +88,7 @@ export const config = {
         institute: "University of Mary Washington",
         address: "Fredericksburg, VA, USA",
         years: "2022 - 2026",
-        logoUrl: "/images/education/umwlogo.jpg",
+        logoUrl: "/education/umwlogo.jpg",
       },
     ],
     skills: [

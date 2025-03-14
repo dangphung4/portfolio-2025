@@ -28,6 +28,36 @@ export const config = {
     resumeLink: "https://drive.google.com/file/d/1dNVVXDWa5p81EOZHs0MHrrvlxI4Rp75z/view?usp=sharing",
   },
   about: {
+    certificationsAndAchievements: [
+      {
+        title: "Certified Kubernetes Administrator (CKA)",
+        organization: "Cloud Native Computing Foundation",
+        date: "Soon",
+        credentialId: "",
+        link: "https://www.cncf.io/certification/cka/",
+        logoUrl: "/certifications/cka.png",
+        inProgress: true,
+      },
+      {
+        title: "Certified Kubernetes Application Developer (CKAD)",
+        organization: "Cloud Native Computing Foundation",
+        date: "Soon",
+        credentialId: "",
+        link: "https://www.cncf.io/certification/ckad/",
+        logoUrl: "/certifications/ckad.png",
+        inProgress: true,
+      },
+      {
+        title: "InsioHacks Hackathon - First Place Winner",
+        organization: "InsioHacks",
+        date: "2023",
+        credentialId: "",
+        link: "https://devpost.com/software/pomotivity",
+        logoUrl: "/projects/pomotivitylogo.jpg",
+        description: "Won first place for developing Pomotivity, a productivity web app that uses the Pomodoro technique to help users stay focused and manage their time effectively.",
+        inProgress: false,
+      },
+    ],
     workExperiences: [
       {
         years: "June 2024 - Present",

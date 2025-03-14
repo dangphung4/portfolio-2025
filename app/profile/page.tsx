@@ -2,6 +2,7 @@ import About from "@/components/profile/about"
 import Experience from "@/components/profile/experience"
 import Education from "@/components/profile/education"
 import ProfileSkills from "@/components/profile/skills"
+import Certifications from "@/components/profile/certifications"
 import { Toaster } from "@/components/ui/toaster"
 
 export default function ProfilePage() {
@@ -12,6 +13,7 @@ export default function ProfilePage() {
         <ProfileSkills />
         <Experience />
         <Education />
+        <Certifications />
       </div>
       <Toaster />
     </main>

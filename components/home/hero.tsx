@@ -260,6 +260,9 @@ export default function Hero() {
                   1000,
                   "I'm a Junior in University",
                   1000,
+                  1000,
+                  `I work at Recro Corporation`,
+                  1000,
                   `I'm a ${config.me.job}`,
                   1000,
                 ]}
@@ -282,10 +285,18 @@ export default function Hero() {
               <p className="text-muted-foreground">
                 {config.app.description}
               </p>
-              <div className="mt-3 flex items-center text-sm text-primary">
-                <span className="font-medium">{yearsOfExperience}+ years of experience</span>
-                <span className="mx-2">•</span>
-                <span className="font-medium">{config.me.stack}</span>
+              <div className="mt-3 flex flex-col gap-2">
+                <div className="flex items-center text-sm text-primary">
+                  <span className="font-medium">{yearsOfExperience}+ years of experience</span>
+                  <span className="mx-2">•</span>
+                  <span className="font-medium">{config.me.stack}</span>
+                </div>
+                <div className="flex flex-col text-sm text-muted-foreground">
+                  <div className="flex items-center">
+                    <div className="w-2 h-2 rounded-full bg-primary mr-2"></div>
+                    <span>Currently at <span className="font-medium text-primary">Recro Corporation</span> as Junior Software Engineer</span>
+                  </div>
+                </div>
               </div>
             </motion.div>
 

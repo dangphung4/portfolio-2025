@@ -4,7 +4,7 @@ export const config = {
     author: "Dang Phung",
     twitter_handle: "@dangphung4",
     description:
-      `Undergraduate computer science student and software engineer with ${getYearsOfExperience(new Date("2023-06-01"))} years of professional experience. This is my portfolio website.`,
+      `Undergraduate computer science student and software engineer with over ${getYearsOfExperience(new Date("2023-06-01"))} year${getYearsOfExperience(new Date("2023-06-01")) > 1 ? 's' : ''} of professional experience. This is my portfolio website.`,
     long_description:
       "Hey I'm Dang, a computer science undergraduate pursuing my bachelors at the University of Mary Washington. I am also a software developer with 1 year of professional experience. I am passionate about building web applications and solving real-world problems. Check out my portfolio website to know more about me.",
     keywords:
@@ -14,15 +14,15 @@ export const config = {
     avatar: "/images/dangphung.png",
     name: "Dang Phung",
     about: [
-      "I'm a Junior Software engineer who loves cheesecake.",
+      "I'm a Junior Software Engineer who loves cheesecake.",
       "I am currently pursing a B.Sc in Computer Science at the University of Mary Washington.",
       "Currently, I am working as a Junior Software Engineer at Recro Corporation.",
-      "I enjoy learning new technologies and building projects that solve real-world problems.",
+      "I like to run, play around with new technologies, and read webtoons.",
     ],
     job: "Junior Software Engineer",
     started: "2023-06-01",
     yearsOfExperience: getYearsOfExperience(new Date("2023-06-01")),
-    stack: "MERN stack",
+    stack: "This site was built with Next.js, and Tailwind.",
     hobby: "gamble my life savings",
     projectLink: "/projects",
     resumeLink: "https://drive.google.com/file/d/1dNVVXDWa5p81EOZHs0MHrrvlxI4Rp75z/view?usp=sharing",
@@ -80,10 +80,10 @@ export const config = {
         logoUrl: "/companies/recro_co_logo-1.jpeg",
         link: "https://recro.com/",
         contributions: [
-          "Architected and developed a complete company website overhaul using Statamic, Laravel, PHP & TailwindCSS, implementing a robust CMS system that enabled content management and improved site performance, resulting in an increase of 300% in user traffic",
+          "Architected and developed a complete company website overhaul using Statamic, Laravel, PHP & TailwindCSS, implementing a robust CMS system that enabled content management and improved site performance, resulting in an increase of user traffic",
           "Spearheaded the development of a job application portal facilitating internal job applications, enabling organization expansion",
-          "Developed a CRM recruiting platform with C#, ASP.NET Core, Aspire, Blazor, Entity Framework, PostgreSQL, and Azure leading to an 80% efficiency increase in the recruitment team",
-          "Led the migration of over 80,000 lines of code to server-side Blazor, enhancing application performance andefficiency by 40%",
+          "Developing a CRM recruiting platform with C#, ASP.NET Core, Aspire, Blazor, Entity Framework, PostgreSQL, and Azure leading to an efficiency increase in the recruitment team",
+          "Led the migration of over 40,000 lines of code to server-side Blazor, enhancing application performance andefficiency by 40%",
           "Optimized complex database interactions by implementing Repository Patterns, abstracting data access from API endpoints to improve system maintainability and scalability by over 30%",
         ],
       },
@@ -198,7 +198,7 @@ export const config = {
     {
       appName: "Lucent",
       url: "https://skincaregod.vercel.app/",
-      about: "A skin care tracking app I made for my girlfriend. Little did I know more people would use it lol",
+      about: "A skin care tracking app I made for my girlfriend.",
       tags: ["React.js", "TypeScript", "TailwindCSS", "Vite", "Firebase", "Dexie", "PWA", "Vercel"],
       image: "/projects/lucent.png",
       codeUrl: "https://github.com/dangphung4/lucent",
@@ -207,7 +207,7 @@ export const config = {
       appName: "Chardle",
       url: "https://chardle.com",
       about:
-        "A daily character guessing game featuring characters from popular series like Avatar: The Last Airbender, Blue Lock, and Percy Jackson. Built with a focus on daily challenges and progress tracking.",
+        "A daily character guessing game featuring characters from popular series like Avatar, Star Wars, and Percy Jackson.",
       tags: ["React.js", "TypeScript", "TailwindCSS", "Express.js", "MongoDB", "AWS"],
       image: "/projects/chardle.png",
     },
@@ -215,7 +215,7 @@ export const config = {
       appName: "Leaflet",
       url: "https://leaflet.at/",
       about:
-        "My personal alternative to obidian, notion & apple notes. Its a PWA first app, so I can use it on my phone, tablet or laptop.Built with React, TailwindCSS, Vite, and Cloudfare/Vercel.",
+        "My personal alternative to apple notes.",
       tags: ["React.js", "TypeScript", "Vite", "TailwindCSS", "Cloudfare", "Vercel", "Firebase"],
       image: "/projects/notes.png",
       codeUrl: "https://github.com/dangphung4/leaflet",
@@ -223,7 +223,7 @@ export const config = {
     {
       appName: "Manipulate AI",
       url: "https://manipulate.app/",
-      about: "A platform and SAAS that allows users to have a personal AI manipulation mentor.",
+      about: "A funny hackathon project I made with my friends.",
       tags: [
         "Next.js",
         "Shadcn",
@@ -259,7 +259,7 @@ export const config = {
     {
       appName: "Bring The Menu",
       url: "https://github.com/dangphung4/vue-patriothacks2023",
-      about: "An AI powered web app that finds coupons and discounts for restaurants near you.",
+      about: "An AI powered hackathon project that finds coupons and discounts for restaurants near you.",
       tags: ["Vue.js", "JavaScript", "Vite", "FastAPI", "MongoDB", "SKLearn", "AWS"],
       image: "/projects/bringthemenu.jpg",
       codeUrl: "https://github.com/dangphung4/vue-patriothacks2023",
@@ -292,7 +292,7 @@ export const config = {
     },
     {
       avatar: "/testimonials/billyh.jpeg",
-      role: "Software Engineer at National Institute for Aviation Research",
+      role: "CEO of Mofilo LLC.",
       name: "Billy Hoang",
       message:
         "I had the opportunity to work alongside Dang on building the first draft of the mobile app. Working with him, I saw many rare traits. He came in wanting to learn and attack the problems head-on. His willingness to take on challenges and work ethic sets him apart. He is fantastic to work with and communicates effectively, which is one of the most important traits I find essential.",
@@ -300,11 +300,11 @@ export const config = {
     },
     {
       avatar: "/testimonials/jasontay.jpeg",
-      role: "Software Engineer at Otsuka Pharmaceutical",
+      role: "3rd year Biochemistry Major at Hampton University",
       name: "Jason Taylor",
       message:
-        "I have seen Dang develop from having little to no experience in software development to becoming a proficient full-stack developer. He is a quick learner and has a strong work ethic. He is always eager to learn new technologies and is not afraid to ask questions. He is a great team player and is always willing to help others. He is a great asset to any team.",
-      link: "https://www.linkin.com/in/dang-phung/details/recommendations",
+        "Dang is a good friend of mine. He loves this field, and is very passionate about it. He is always willing to help others, and is a great asset to any team.",
+      link: "https://www.linkedin.com/in/jason-taylor-308780281/",
     },
   ],
 }
@@ -321,14 +321,11 @@ function getYearsOfExperience(startDate: Date) {
     }
     
     const now = new Date();
-    const years = now.getFullYear() - start.getFullYear();
-    const monthDiff = now.getMonth() - start.getMonth();
+    const diffInMonths = (now.getFullYear() - start.getFullYear()) * 12 + 
+                        (now.getMonth() - start.getMonth());
     
-    // Calculate precise years with month difference
-    const preciseYears = years + (monthDiff / 12);
-    
-    // Return with 1 decimal place
-    return Math.round(preciseYears * 10) / 10;
+    const years = Math.floor(diffInMonths / 12);
+    return years;
   } catch (error) {
     console.error("Error calculating years of experience:", error);
     return 1; // Fallback to a default value

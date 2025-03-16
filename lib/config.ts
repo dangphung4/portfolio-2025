@@ -311,13 +311,11 @@ export const config = {
 
 function getYearsOfExperience(startDate: Date) {
   try {
-    // Ensure we're working with a valid date object
     const start = startDate instanceof Date ? startDate : new Date(startDate);
     
-    // Check if the date is valid
     if (isNaN(start.getTime())) {
       console.error("Invalid start date provided to getYearsOfExperience");
-      return 1; // Fallback to a default value
+      return 1;
     }
     
     const now = new Date();
@@ -328,6 +326,6 @@ function getYearsOfExperience(startDate: Date) {
     return years;
   } catch (error) {
     console.error("Error calculating years of experience:", error);
-    return 1; // Fallback to a default value
+    return 1; 
   }
 }

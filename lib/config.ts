@@ -3,8 +3,11 @@ export const config = {
     site_name: "Dang Phung",
     author: "Dang Phung",
     twitter_handle: "@dangphung4",
-    description:
-      `Undergraduate computer science student and software engineer with over ${getYearsOfExperience(new Date("2023-06-01"))} year${getYearsOfExperience(new Date("2023-06-01")) > 1 ? 's' : ''} of professional experience. This is my portfolio website.`,
+    description: `Undergraduate computer science student and software engineer with over ${getYearsOfExperience(
+      new Date("2023-06-01")
+    )} year${
+      getYearsOfExperience(new Date("2023-06-01")) > 1 ? "s" : ""
+    } of professional experience. This is my portfolio website.`,
     long_description:
       "Hey I'm Dang, a computer science undergraduate pursuing my bachelors at the University of Mary Washington. I am also a software developer with 1 year of professional experience. I am passionate about building web applications and solving real-world problems. Check out my portfolio website to know more about me.",
     keywords:
@@ -14,7 +17,7 @@ export const config = {
     avatar: "/images/dangphung.png",
     name: "Dang Phung",
     about: [
-      "I'm a Junior Software Engineer who loves cheesecake.",
+      "I'm a junior developer who loves cheesecake.",
       "I am currently pursing a B.Sc in Computer Science at the University of Mary Washington.",
       "Currently, I am working as a Junior Software Engineer at Recro Corporation.",
       "I like to run, play around with new technologies, and read webtoons.",
@@ -25,7 +28,8 @@ export const config = {
     stack: "This site was built with Next.js, and Tailwind.",
     hobby: "gamble my life savings",
     projectLink: "/projects",
-    resumeLink: "https://drive.google.com/file/d/1dNVVXDWa5p81EOZHs0MHrrvlxI4Rp75z/view?usp=sharing",
+    resumeLink:
+      "https://drive.google.com/file/d/1dNVVXDWa5p81EOZHs0MHrrvlxI4Rp75z/view?usp=sharing",
   },
   about: {
     certificationsAndAchievements: [
@@ -54,7 +58,8 @@ export const config = {
         credentialId: "",
         link: "https://devpost.com/software/pomotivity",
         logoUrl: "/projects/pomotivitylogo.jpg",
-        description: "Won first place for developing Pomotivity, a productivity web app that uses the Pomodoro technique to help users stay focused and manage their time effectively.",
+        description:
+          "Won first place for developing Pomotivity, a productivity web app that uses the Pomodoro technique to help users stay focused and manage their time effectively.",
         inProgress: false,
       },
     ],
@@ -124,23 +129,38 @@ export const config = {
       },
     ],
     skills: [
-      { title: "JavaScript", icon: "javascript-plain bg-black bg-cover overflow-hidden" },
+      {
+        title: "JavaScript",
+        icon: "javascript-plain bg-black bg-cover overflow-hidden",
+      },
       { title: "TypeScript", icon: "typescript-plain" },
       { title: "Python", icon: "python-plain" },
       { title: "C#", icon: "csharp-plain" },
       { title: "Java", icon: "java-plain" },
       { title: "HTML5", icon: "html5-plain" },
       { title: "CSS3", icon: "css3-plain" },
-      { title: "React.js", icon: "react-plain group-hover:bg-black p-1 rounded-full" },
-      { title: "Next.js", icon: "nextjs-plain bg-white font-normal rounded-full" },
+      {
+        title: "React.js",
+        icon: "react-plain group-hover:bg-black p-1 rounded-full",
+      },
+      {
+        title: "Next.js",
+        icon: "nextjs-plain bg-white font-normal rounded-full",
+      },
       { title: "Express.js", icon: "express-original rounded-fulll" },
-      { title: "React Native", icon: "react-plain group-hover:bg-black p-1 rounded-full" },
+      {
+        title: "React Native",
+        icon: "react-plain group-hover:bg-black p-1 rounded-full",
+      },
       { title: "Redux", icon: "redux-original" },
       { title: "Kubernetes", icon: "kubernetes-plain" },
       { title: "FastAPI", icon: "fastapi-plain" },
       { title: "Blazor", icon: "blazor-plain" },
       { title: "ASP.NET Core", icon: "dotnetcore-plain" },
-      { title: "Node.js", icon: "nodejs-plain-wordmark p-1 group-hover:bg-black rounded-full" },
+      {
+        title: "Node.js",
+        icon: "nodejs-plain-wordmark p-1 group-hover:bg-black rounded-full",
+      },
       { title: "Flask", icon: "flask-original" },
       { title: "Django", icon: "django-plain" },
       { title: "AWS", icon: "amazonwebservices-plain" },
@@ -155,7 +175,10 @@ export const config = {
       { title: "MaterialUI", icon: "materialui-plain" },
       { title: "Chakra UI", icon: "chakraui-plain" },
       { title: "GraphQL", icon: "graphql-plain" },
-      { title: "Postman", icon: "postman-plain bg-white font-normal rounded-full" },
+      {
+        title: "Postman",
+        icon: "postman-plain bg-white font-normal rounded-full",
+      },
       { title: "Docker", icon: "docker-plain" },
       { title: "Git", icon: "git-plain" },
       { title: "Ubuntu", icon: "ubuntu-plain" },
@@ -163,7 +186,10 @@ export const config = {
       { title: "Rocky Linux", icon: "rockylinux-plain" },
       { title: "MacOS", icon: "apple-original" },
       { title: "Windows", icon: "windows8-original" },
-      { title: "GitHub", icon: "github-original bg-white font-normal rounded-full" },
+      {
+        title: "GitHub",
+        icon: "github-original bg-white font-normal rounded-full",
+      },
       { title: "GitLab", icon: "gitlab-plain" },
     ],
   },
@@ -177,9 +203,24 @@ export const config = {
       url: "https://drive.google.com/file/d/1dNVVXDWa5p81EOZHs0MHrrvlxI4Rp75z/view?usp=sharing",
       external: true,
     },
-    { title: "GitHub", url: "https://github.com/dangphung4", external: true, displayInDrawerOnly: true },
-    { title: "LinkedIn", url: "https://www.linkedin.com/in/dang-phung/", external: true, displayInDrawerOnly: true },
-    { title: "dangphung4@gmail.com", url: "mailto:dangphung4@gmail.com", external: true, displayInDrawerOnly: true },
+    {
+      title: "GitHub",
+      url: "https://github.com/dangphung4",
+      external: true,
+      displayInDrawerOnly: true,
+    },
+    {
+      title: "LinkedIn",
+      url: "https://www.linkedin.com/in/dang-phung/",
+      external: true,
+      displayInDrawerOnly: true,
+    },
+    {
+      title: "dangphung4@gmail.com",
+      url: "mailto:dangphung4@gmail.com",
+      external: true,
+      displayInDrawerOnly: true,
+    },
   ],
   socials: {
     GitHub: "https://github.com/dangphung4",
@@ -191,7 +232,16 @@ export const config = {
       appName: "Solus",
       url: "https://soluscore.com/",
       about: "Singular clarity for every decision",
-      tags: ["React.js", "TypeScript", "TailwindCSS", "Vite", "Firebase", "Dexie", "PWA", "Vercel"],
+      tags: [
+        "React.js",
+        "TypeScript",
+        "TailwindCSS",
+        "Vite",
+        "Firebase",
+        "Dexie",
+        "PWA",
+        "Vercel",
+      ],
       image: "/projects/solus.png",
       codeUrl: "https://github.com/dangphung4/solus",
     },
@@ -199,7 +249,16 @@ export const config = {
       appName: "Lucent",
       url: "https://skincaregod.vercel.app/",
       about: "A skin care tracking app I made for my girlfriend.",
-      tags: ["React.js", "TypeScript", "TailwindCSS", "Vite", "Firebase", "Dexie", "PWA", "Vercel"],
+      tags: [
+        "React.js",
+        "TypeScript",
+        "TailwindCSS",
+        "Vite",
+        "Firebase",
+        "Dexie",
+        "PWA",
+        "Vercel",
+      ],
       image: "/projects/lucent.png",
       codeUrl: "https://github.com/dangphung4/lucent",
     },
@@ -208,15 +267,29 @@ export const config = {
       url: "https://chardle.com",
       about:
         "A daily character guessing game featuring characters from popular series like Avatar, Star Wars, and Percy Jackson.",
-      tags: ["React.js", "TypeScript", "TailwindCSS", "Express.js", "MongoDB", "AWS"],
+      tags: [
+        "React.js",
+        "TypeScript",
+        "TailwindCSS",
+        "Express.js",
+        "MongoDB",
+        "AWS",
+      ],
       image: "/projects/chardle.png",
     },
     {
       appName: "Leaflet",
       url: "https://leaflet.at/",
-      about:
-        "My personal alternative to apple notes.",
-      tags: ["React.js", "TypeScript", "Vite", "TailwindCSS", "Cloudfare", "Vercel", "Firebase"],
+      about: "My personal alternative to apple notes.",
+      tags: [
+        "React.js",
+        "TypeScript",
+        "Vite",
+        "TailwindCSS",
+        "Cloudfare",
+        "Vercel",
+        "Firebase",
+      ],
       image: "/projects/notes.png",
       codeUrl: "https://github.com/dangphung4/leaflet",
     },
@@ -244,39 +317,80 @@ export const config = {
       url: "https://www.pomotivity.com/",
       about:
         "A productivity web app that uses the Pomodoro technique to help users stay focused and manage their time effectively.",
-      tags: ["React.js", "Javascript", "Vite", "MaterialUI", "Express.js", "Supabase", "PostgreSQL"],
+      tags: [
+        "React.js",
+        "Javascript",
+        "Vite",
+        "MaterialUI",
+        "Express.js",
+        "Supabase",
+        "PostgreSQL",
+      ],
       image: "/projects/pomotivitylogo.jpg",
       codeUrl: "https://github.com/dangphung4/pomodoro-insiohacks2023",
     },
     {
       appName: "Transcriptify",
       url: "https://github.com/dangphung4/voice-notes",
-      about: "A web app that transcribes voice notes to text with real time speech recognition.",
-      tags: ["React.js", "TypeScript", "Vite", "TailwindCSS", "Redux TK", "IBM Watson", "OpenAI", "FireBase"],
+      about:
+        "A web app that transcribes voice notes to text with real time speech recognition.",
+      tags: [
+        "React.js",
+        "TypeScript",
+        "Vite",
+        "TailwindCSS",
+        "Redux TK",
+        "IBM Watson",
+        "OpenAI",
+        "FireBase",
+      ],
       image: "/projects/transcriptify.jpg",
       codeUrl: "https://github.com/dangphung4/voice-notes",
     },
     {
       appName: "Bring The Menu",
       url: "https://github.com/dangphung4/vue-patriothacks2023",
-      about: "An AI powered hackathon project that finds coupons and discounts for restaurants near you.",
-      tags: ["Vue.js", "JavaScript", "Vite", "FastAPI", "MongoDB", "SKLearn", "AWS"],
+      about:
+        "An AI powered hackathon project that finds coupons and discounts for restaurants near you.",
+      tags: [
+        "Vue.js",
+        "JavaScript",
+        "Vite",
+        "FastAPI",
+        "MongoDB",
+        "SKLearn",
+        "AWS",
+      ],
       image: "/projects/bringthemenu.jpg",
       codeUrl: "https://github.com/dangphung4/vue-patriothacks2023",
     },
     {
       appName: "Health Buddy",
       url: "https://github.com/dangphung4/HealthBuddy",
-      about: "A web app I made for my grandma with dementia and alzheimer's so she can get medical advice from people she trusts.",
-      tags: ["React.js", "Vite", "FastAPI", "OpenAI", "AWS", "Google Cloud"],
+      about:
+        "A web app I made for my grandma with dementia and alzheimer's so she can get medical advice from people she trusts.",
+      tags: [
+        "React.js",
+        "Vite",
+        "FastAPI",
+        "OpenAI",
+        "AWS",
+        "Google Cloud",
+      ],
       image: "/projects/healthb.png",
       codeUrl: "https://github.com/dangphung4/HealthBuddy",
     },
     {
       appName: "Quick Keys",
       url: "https://quickkeys.vercel.app/",
-      about: "A typing test game based on the popular game monkeytype. Comes in dracula theme.",
-      tags: ["React.js", "TypeScript", "TailwindCSS", "Framer Motion"],
+      about:
+        "A typing test game based on the popular game monkeytype. Comes in dracula theme.",
+      tags: [
+        "React.js",
+        "TypeScript",
+        "TailwindCSS",
+        "Framer Motion",
+      ],
       image: "/projects/quickkeys.png",
       codeUrl: "https://github.com/dangphung4/typing-game",
     },
@@ -307,25 +421,26 @@ export const config = {
       link: "https://www.linkedin.com/in/jason-taylor-308780281/",
     },
   ],
-}
+};
 
 function getYearsOfExperience(startDate: Date) {
   try {
     const start = startDate instanceof Date ? startDate : new Date(startDate);
-    
+
     if (isNaN(start.getTime())) {
       console.error("Invalid start date provided to getYearsOfExperience");
       return 1;
     }
-    
+
     const now = new Date();
-    const diffInMonths = (now.getFullYear() - start.getFullYear()) * 12 + 
-                        (now.getMonth() - start.getMonth());
-    
+    const diffInMonths =
+      (now.getFullYear() - start.getFullYear()) * 12 +
+      (now.getMonth() - start.getMonth());
+
     const years = Math.floor(diffInMonths / 12);
     return years;
   } catch (error) {
     console.error("Error calculating years of experience:", error);
-    return 1; 
+    return 1;
   }
 }

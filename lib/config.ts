@@ -241,10 +241,10 @@ export const config = {
     },
     {
       appName: "Pomotivity",
-      url: "https://github.com/dangphung4/pomodoro-insiohacks2023",
+      url: "https://www.pomotivity.com/",
       about:
         "A productivity web app that uses the Pomodoro technique to help users stay focused and manage their time effectively.",
-      tags: ["React.js", "TypeScript", "Vite", "MaterialUI", "Express.js", "Supabase", "PostgreSQL"],
+      tags: ["React.js", "Javascript", "Vite", "MaterialUI", "Express.js", "Supabase", "PostgreSQL"],
       image: "/projects/pomotivitylogo.jpg",
       codeUrl: "https://github.com/dangphung4/pomodoro-insiohacks2023",
     },
@@ -274,7 +274,7 @@ export const config = {
     },
     {
       appName: "Quick Keys",
-      url: "https://github.com/dangphung4/typing-game",
+      url: "https://quickkeys.vercel.app/",
       about: "A typing test game based on the popular game monkeytype. Comes in dracula theme.",
       tags: ["React.js", "TypeScript", "TailwindCSS", "Framer Motion"],
       image: "/projects/quickkeys.png",

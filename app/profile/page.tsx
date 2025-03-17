@@ -1,8 +1,6 @@
 import About from "@/components/profile/about"
-import Experience from "@/components/profile/experience"
-import Education from "@/components/profile/education"
 import ProfileSkills from "@/components/profile/skills"
-import Certifications from "@/components/profile/certifications"
+import ProfileTabs from "@/components/profile/ProfileTabs"
 import { Toaster } from "@/components/ui/toaster"
 
 export default function ProfilePage() {
@@ -11,9 +9,7 @@ export default function ProfilePage() {
       <div className="container mx-auto px-4 py-12">
         <About />
         <ProfileSkills />
-        <Experience />
-        <Education />
-        <Certifications />
+        <ProfileTabs />
       </div>
       <Toaster />
     </main>

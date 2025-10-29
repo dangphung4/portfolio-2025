@@ -200,52 +200,56 @@ export default function Hero() {
         {/* Grid pattern */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none" />
         
-        {/* Animated particles - fewer on mobile */}
-        {Array.from({ length: 30 }).map((_, i) => (
-          <motion.div
-            key={i}
-            className="absolute bg-primary/10 rounded-full hidden md:block"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${Math.max(2, Math.random() * 6)}px`,
-              height: `${Math.max(2, Math.random() * 6)}px`,
-            }}
-            animate={{
-              y: [0, Math.random() * 30 * (Math.random() > 0.5 ? 1 : -1)],
-              opacity: [0.2, 0.5, 0.2],
-              scale: [1, Math.random() * 0.5 + 1, 1],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 5,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-        ))}
+        {/* Animated particles - conditionally rendered based on screen size */}
+        <div className="hidden md:block">
+          {Array.from({ length: 30 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute bg-primary/10 rounded-full"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: `${Math.max(2, Math.random() * 6)}px`,
+                height: `${Math.max(2, Math.random() * 6)}px`,
+              }}
+              animate={{
+                y: [0, Math.random() * 30 * (Math.random() > 0.5 ? 1 : -1)],
+                opacity: [0.2, 0.5, 0.2],
+                scale: [1, Math.random() * 0.5 + 1, 1],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 5,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+          ))}
+        </div>
         {/* Mobile particles - fewer count */}
-        {Array.from({ length: 10 }).map((_, i) => (
-          <motion.div
-            key={`mobile-${i}`}
-            className="absolute bg-primary/10 rounded-full block md:hidden"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${Math.max(2, Math.random() * 4)}px`,
-              height: `${Math.max(2, Math.random() * 4)}px`,
-            }}
-            animate={{
-              y: [0, Math.random() * 20 * (Math.random() > 0.5 ? 1 : -1)],
-              opacity: [0.2, 0.5, 0.2],
-              scale: [1, Math.random() * 0.5 + 1, 1],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 5,
-              repeat: Infinity,
-              repeatType: "reverse",
-            }}
-          />
-        ))}
+        <div className="block md:hidden">
+          {Array.from({ length: 10 }).map((_, i) => (
+            <motion.div
+              key={`mobile-${i}`}
+              className="absolute bg-primary/10 rounded-full"
+              style={{
+                top: `${Math.random() * 100}%`,
+                left: `${Math.random() * 100}%`,
+                width: `${Math.max(2, Math.random() * 4)}px`,
+                height: `${Math.max(2, Math.random() * 4)}px`,
+              }}
+              animate={{
+                y: [0, Math.random() * 20 * (Math.random() > 0.5 ? 1 : -1)],
+                opacity: [0.2, 0.5, 0.2],
+                scale: [1, Math.random() * 0.5 + 1, 1],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 5,
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
+            />
+          ))}
+        </div>
       </motion.div>
 
       <div className="container mx-auto px-4 sm:px-6">
@@ -316,7 +320,7 @@ export default function Hero() {
                 </div>
                 <div className="flex flex-col text-xs md:text-sm text-muted-foreground">
                   <div className="flex items-start gap-2 justify-center lg:justify-start">
-                    <div className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0"></div>
+                    <div className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0" aria-hidden="true"></div>
                     <span className="text-center lg:text-left">Currently at <span className="font-medium text-primary"><Link href="https://www.recro.com/" target="_blank" rel="noopener noreferrer">Recro Corporation</Link></span> as Junior Software Engineer</span>
                   </div>
                 </div>
@@ -452,7 +456,7 @@ export default function Hero() {
         
         {/* Scroll indicator */}
         <motion.div 
-          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center hidden md:flex"
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center hidden md:flex"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.5 }}

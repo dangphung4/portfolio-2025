@@ -74,6 +74,21 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Gradient animation */
+@keyframes gradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% 200%;
+  animation: gradient 3s ease infinite;
+}
+
 /* Custom styles for keen-slider */
 .keen-slider {
   width: 100%;

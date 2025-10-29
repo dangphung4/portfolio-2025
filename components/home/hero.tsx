@@ -187,24 +187,24 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative min-h-[90vh] pt-20 pb-16 md:pt-32 md:pb-24 overflow-hidden flex items-center">
+    <section className="relative min-h-[100vh] md:min-h-[90vh] pt-24 pb-20 md:pt-32 md:pb-24 overflow-hidden flex items-center">
       {/* Animated background elements */}
       <motion.div 
         className="absolute inset-0 -z-10"
         style={{ x: backgroundX, y: backgroundY }}
       >
-        <div className="absolute top-0 -left-4 w-72 h-72 bg-primary/30 rounded-full filter blur-3xl opacity-30 animate-pulse" />
-        <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/30 rounded-full filter blur-3xl opacity-20 animate-pulse" />
-        <div className="absolute top-1/3 right-1/4 w-64 h-64 bg-blue-500/20 rounded-full filter blur-3xl opacity-20 animate-pulse" />
+        <div className="absolute top-0 -left-4 w-48 h-48 md:w-72 md:h-72 bg-primary/30 rounded-full filter blur-3xl opacity-30 animate-pulse" />
+        <div className="absolute bottom-0 right-0 w-64 h-64 md:w-96 md:h-96 bg-purple-500/30 rounded-full filter blur-3xl opacity-20 animate-pulse" />
+        <div className="absolute top-1/3 right-1/4 w-48 h-48 md:w-64 md:h-64 bg-blue-500/20 rounded-full filter blur-3xl opacity-20 animate-pulse" />
         
         {/* Grid pattern */}
         <div className="absolute inset-0 bg-grid-pattern opacity-[0.02] pointer-events-none" />
         
-        {/* Animated particles */}
+        {/* Animated particles - fewer on mobile */}
         {Array.from({ length: 30 }).map((_, i) => (
           <motion.div
             key={i}
-            className="absolute bg-primary/10 rounded-full"
+            className="absolute bg-primary/10 rounded-full hidden md:block"
             style={{
               top: `${Math.random() * 100}%`,
               left: `${Math.random() * 100}%`,
@@ -223,27 +223,50 @@ export default function Hero() {
             }}
           />
         ))}
+        {/* Mobile particles - fewer count */}
+        {Array.from({ length: 10 }).map((_, i) => (
+          <motion.div
+            key={`mobile-${i}`}
+            className="absolute bg-primary/10 rounded-full block md:hidden"
+            style={{
+              top: `${Math.random() * 100}%`,
+              left: `${Math.random() * 100}%`,
+              width: `${Math.max(2, Math.random() * 4)}px`,
+              height: `${Math.max(2, Math.random() * 4)}px`,
+            }}
+            animate={{
+              y: [0, Math.random() * 20 * (Math.random() > 0.5 ? 1 : -1)],
+              opacity: [0.2, 0.5, 0.2],
+              scale: [1, Math.random() * 0.5 + 1, 1],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 5,
+              repeat: Infinity,
+              repeatType: "reverse",
+            }}
+          />
+        ))}
       </motion.div>
 
-      <div className="container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
           {/* Text Content */}
           <motion.div
-            className="flex-1 max-w-2xl"
+            className="flex-1 max-w-2xl w-full"
             ref={ref}
             initial="hidden"
             animate={controls}
             variants={containerVariants}
           >
-            <motion.div variants={itemVariants} className="flex items-center gap-2 mb-6">
-              <div className="h-1 w-12 bg-primary rounded-full"></div>
-              <span className="text-primary font-medium">Senior Computer Science Major</span>
-              <div className="h-1 w-12 bg-primary rounded-full"></div>
+            <motion.div variants={itemVariants} className="flex items-center gap-2 mb-4 md:mb-6 justify-center lg:justify-start">
+              <div className="h-1 w-8 md:w-12 bg-primary rounded-full"></div>
+              <span className="text-primary font-medium text-xs md:text-sm">Senior Computer Science Major</span>
+              <div className="h-1 w-8 md:w-12 bg-primary rounded-full"></div>
             </motion.div>
 
             <motion.h1
               variants={itemVariants}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight text-center lg:text-left"
             >
               {greeting}{" "}
               <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary via-secondary to-accent animate-gradient">
@@ -251,7 +274,7 @@ export default function Hero() {
               </span>
             </motion.h1>
 
-            <motion.div variants={itemVariants} className="text-xl md:text-2xl text-muted-foreground mb-8 h-16 flex items-center">
+            <motion.div variants={itemVariants} className="text-lg sm:text-xl md:text-2xl text-muted-foreground mb-6 md:mb-8 h-12 md:h-16 flex items-center justify-center lg:justify-start">
               <TypeAnimation
                 sequence={[
                   "I build web applications",
@@ -271,44 +294,44 @@ export default function Hero() {
                 repeat={Number.POSITIVE_INFINITY}
                 className="font-medium"
               />
-              <span className="ml-1 w-0.5 h-6 bg-primary animate-pulse"></span>
+              <span className="ml-1 w-0.5 h-5 md:h-6 bg-primary animate-pulse"></span>
             </motion.div>
 
             <motion.div 
               variants={itemVariants} 
-              className="relative p-4 bg-muted/50 backdrop-blur-sm rounded-lg border border-border/50 mb-8 max-w-lg"
+              className="relative p-3 sm:p-4 bg-muted/50 backdrop-blur-sm rounded-lg border border-border/50 mb-6 md:mb-8 w-full lg:max-w-lg"
             >
               <div className="absolute -top-2 -left-2 w-4 h-4 border-t-2 border-l-2 border-primary"></div>
               <div className="absolute -top-2 -right-2 w-4 h-4 border-t-2 border-r-2 border-primary"></div>
               <div className="absolute -bottom-2 -left-2 w-4 h-4 border-b-2 border-l-2 border-primary"></div>
               <div className="absolute -bottom-2 -right-2 w-4 h-4 border-b-2 border-r-2 border-primary"></div>
-              <p className="text-muted-foreground">
+              <p className="text-muted-foreground text-sm md:text-base">
                 {config.app.description}
               </p>
               <div className="mt-3 flex flex-col gap-2">
-                <div className="flex items-center text-sm text-primary">
+                <div className="flex items-center text-xs md:text-sm text-primary flex-wrap justify-center lg:justify-start gap-1">
                   <span className="font-medium">{yearsOfExperience}+ years of experience</span>
-                  <span className="mx-2">•</span>
+                  <span className="mx-2 hidden sm:inline">•</span>
                   <span className="font-medium">{config.me.stack}</span>
                 </div>
-                <div className="flex flex-col text-sm text-muted-foreground">
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 rounded-full bg-primary mr-2"></div>
-                    <span>Currently at <span className="font-medium text-primary"><Link href="https://www.recro.com/" target="_blank" rel="noopener noreferrer">Recro Corporation</Link></span> as Junior Software Engineer</span>
+                <div className="flex flex-col text-xs md:text-sm text-muted-foreground">
+                  <div className="flex items-start gap-2 justify-center lg:justify-start">
+                    <div className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0"></div>
+                    <span className="text-center lg:text-left">Currently at <span className="font-medium text-primary"><Link href="https://www.recro.com/" target="_blank" rel="noopener noreferrer">Recro Corporation</Link></span> as Junior Software Engineer</span>
                   </div>
                 </div>
               </div>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
-              <Button asChild size="lg" className="group rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all">
+            <motion.div variants={itemVariants} className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4 justify-center lg:justify-start">
+              <Button asChild size="lg" className="group rounded-full shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-all w-full sm:w-auto">
                 <Link href="/contact">
                   Get in touch
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
 
-              <Button asChild variant="outline" size="lg" className="rounded-full border-primary/20 hover:border-primary/50 shadow-sm transition-all">
+              <Button asChild variant="outline" size="lg" className="rounded-full border-primary/20 hover:border-primary/50 shadow-sm transition-all w-full sm:w-auto">
                 <Link href={config.me.resumeLink} target="_blank" rel="noopener noreferrer">
                   <Download className="mr-2 h-4 w-4" />
                   Resume
@@ -316,20 +339,20 @@ export default function Hero() {
               </Button>
             </motion.div>
 
-            <motion.div variants={itemVariants} className="flex gap-4 mt-8">
+            <motion.div variants={itemVariants} className="flex gap-3 md:gap-4 mt-6 md:mt-8 justify-center lg:justify-start">
               <Link href={config.socials.GitHub} target="_blank" rel="noopener noreferrer" className="group" aria-label="GitHub Profile">
-                <div className="bg-muted hover:bg-primary/20 p-3 rounded-full transition-all shadow-sm hover:shadow-md">
-                  <Github className="h-5 w-5 group-hover:text-primary transition-colors" />
+                <div className="bg-muted hover:bg-primary/20 p-2.5 md:p-3 rounded-full transition-all shadow-sm hover:shadow-md">
+                  <Github className="h-4 w-4 md:h-5 md:w-5 group-hover:text-primary transition-colors" />
                 </div>
               </Link>
               <Link href={config.socials.LinkedIn} target="_blank" rel="noopener noreferrer" className="group" aria-label="LinkedIn Profile">
-                <div className="bg-muted hover:bg-primary/20 p-3 rounded-full transition-all shadow-sm hover:shadow-md">
-                  <Linkedin className="h-5 w-5 group-hover:text-primary transition-colors" />
+                <div className="bg-muted hover:bg-primary/20 p-2.5 md:p-3 rounded-full transition-all shadow-sm hover:shadow-md">
+                  <Linkedin className="h-4 w-4 md:h-5 md:w-5 group-hover:text-primary transition-colors" />
                 </div>
               </Link>
               <Link href={config.socials.Email} target="_blank" rel="noopener noreferrer" className="group" aria-label="Email Contact">
-                <div className="bg-muted hover:bg-primary/20 p-3 rounded-full transition-all shadow-sm hover:shadow-md">
-                  <Mail className="h-5 w-5 group-hover:text-primary transition-colors" />
+                <div className="bg-muted hover:bg-primary/20 p-2.5 md:p-3 rounded-full transition-all shadow-sm hover:shadow-md">
+                  <Mail className="h-4 w-4 md:h-5 md:w-5 group-hover:text-primary transition-colors" />
                 </div>
               </Link>
             </motion.div>
@@ -337,7 +360,7 @@ export default function Hero() {
 
           {/* Image */}
           <motion.div
-            className="relative flex-1 flex justify-center perspective"
+            className="relative flex-1 flex justify-center perspective mt-8 lg:mt-0"
             initial="hidden"
             animate={controls}
             variants={imageVariants}
@@ -349,17 +372,17 @@ export default function Hero() {
               rotateY: tiltY
             }}
           >
-            {/* Decorative elements */}
-            <div className="absolute inset-0 flex items-center justify-center">
+            {/* Decorative elements - hidden on mobile */}
+            <div className="absolute inset-0 flex items-center justify-center hidden md:flex">
               <div className="w-[300px] h-[300px] md:w-[350px] md:h-[350px] rounded-full border-2 border-dashed border-primary/30 animate-spin-slow"></div>
             </div>
             
-            <div className="absolute inset-0 flex items-center justify-center">
+            <div className="absolute inset-0 flex items-center justify-center hidden md:flex">
               <div className="w-[250px] h-[250px] md:w-[300px] md:h-[300px] rounded-full border border-primary/20"></div>
             </div>
 
             {/* Profile image with 3D effect */}
-            <div className="relative w-64 h-64 md:w-72 md:h-72 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl z-10 transform-gpu group">
+            <div className="relative w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64 lg:w-72 lg:h-72 rounded-full overflow-hidden border-4 border-primary/20 shadow-xl z-10 transform-gpu group">
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-purple-500/10 z-10"></div>
               <Image
                 src="/dangphung.jpg"
@@ -373,12 +396,13 @@ export default function Hero() {
               <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-20"></div>
             </div>
 
-            {/* Floating skill badges */}
+            {/* Floating skill badges - optimized for mobile */}
             {skills.map((skill, index) => (
               <motion.div
                 key={index}
                 className={cn(
-                  "absolute bg-background/80 backdrop-blur-sm border shadow-lg rounded-full px-3 py-1.5 text-sm font-medium z-20 cursor-pointer transition-all",
+                  "absolute bg-background/80 backdrop-blur-sm border shadow-lg rounded-full px-2 py-1 md:px-3 md:py-1.5 text-xs md:text-sm font-medium z-20 cursor-pointer transition-all",
+                  "hidden lg:flex", // Hide on mobile and tablet, show on large screens
                   activeSkill === index ? "scale-110 shadow-xl" : ""
                 )}
                 style={{
@@ -428,7 +452,7 @@ export default function Hero() {
         
         {/* Scroll indicator */}
         <motion.div 
-          className="absolute bottom left-1/2 transform -translate-x-1/2 flex flex-col items-center"
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex flex-col items-center hidden md:flex"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2.5 }}

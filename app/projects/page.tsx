@@ -1,7 +1,22 @@
+import type { Metadata } from "next"
 import { config } from "@/lib/config"
 import { Toaster } from "@/components/ui/toaster"
 import { FeaturedProjects } from "@/components/ui/featured-projects"
 import { ProjectCards } from "@/components/ui/project-cards"
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description: `Explore ${config.projects.length} projects by ${config.me.name}, showcasing expertise in web development, full-stack applications, and modern technologies including React, Next.js, TypeScript, and more.`,
+  openGraph: {
+    title: `Projects - ${config.app.site_name}`,
+    description: `Portfolio of ${config.projects.length} web development projects`,
+    url: `${config.website}/projects`,
+  },
+  twitter: {
+    title: `Projects - ${config.app.site_name}`,
+    description: `Portfolio of ${config.projects.length} web development projects`,
+  },
+}
 
 export default function ProjectsPage() {
   // Add id property to projects for the FeaturedProjects component

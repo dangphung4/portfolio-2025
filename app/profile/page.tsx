@@ -1,8 +1,24 @@
+import type { Metadata } from "next"
 import About from "@/components/profile/about"
 import ProfileSkills from "@/components/profile/skills"
 import ProfileTabs from "@/components/profile/ProfileTabs"
 import GitHubContributions from "@/components/github-contributions"
 import { Toaster } from "@/components/ui/toaster"
+import { config } from "@/lib/config"
+
+export const metadata: Metadata = {
+  title: "Profile",
+  description: `Learn more about ${config.me.name}, a ${config.me.job} with ${config.me.yearsOfExperience}+ years of experience in software development. View work experience, education, skills, and GitHub contributions.`,
+  openGraph: {
+    title: `Profile - ${config.app.site_name}`,
+    description: `Professional profile of ${config.me.name} - ${config.me.job}`,
+    url: `${config.website}/profile`,
+  },
+  twitter: {
+    title: `Profile - ${config.app.site_name}`,
+    description: `Professional profile of ${config.me.name} - ${config.me.job}`,
+  },
+}
 
 export default function ProfilePage() {
   return (

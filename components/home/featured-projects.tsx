@@ -1,6 +1,6 @@
 "use client"
 
-import { useRef, useState } from "react"
+import { useRef, useState, useEffect } from "react"
 import { motion, useInView } from "framer-motion"
 import { config } from "@/lib/config"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
@@ -12,12 +12,14 @@ import Link from "next/link"
 import { cn } from "@/lib/utils"
 import { useKeenSlider } from "keen-slider/react"
 import "keen-slider/keen-slider.min.css"
+import { Skeleton } from "@/components/ui/skeleton"
 
 export default function FeaturedProjects() {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
   const [currentSlide, setCurrentSlide] = useState(0)
   const [loaded, setLoaded] = useState(false)
+  const [imagesLoading, setImagesLoading] = useState(true)
 
   const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
     initial: 0,
@@ -40,6 +42,13 @@ export default function FeaturedProjects() {
 
   // Only show first 6 projects in the carousel
   const featuredProjects = config.projects.slice(0, 6)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setImagesLoading(false)
+    }, 500)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <section id="projects" className="py-16 md:py-24 overflow-hidden">
@@ -81,12 +90,16 @@ export default function FeaturedProjects() {
                 >
                   <Card className="h-full flex flex-col overflow-hidden border-primary/20 hover:border-primary/50 transition-colors">
                     <div className="relative h-48 w-full overflow-hidden">
-                      <Image
-                        src={project.image || "/placeholder.svg?height=192&width=384"}
-                        alt={project.appName}
-                        fill
-                        className="object-cover transition-transform duration-500 hover:scale-105"
-                      />
+                      {imagesLoading ? (
+                        <Skeleton className="w-full h-full rounded-none" />
+                      ) : (
+                        <Image
+                          src={project.image || "/placeholder.svg?height=192&width=384"}
+                          alt={project.appName}
+                          fill
+                          className="object-cover transition-transform duration-500 hover:scale-105"
+                        />
+                      )}
                     </div>
                     <CardContent className="flex-grow p-6">
                       <h3 className="text-xl font-bold mb-2">{project.appName}</h3>

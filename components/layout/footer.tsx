@@ -113,9 +113,6 @@ export default function Footer() {
           <p className="text-muted-foreground text-sm mb-4 md:mb-0">
             © {currentYear} {config.app.site_name}. All rights reserved.
           </p>
-          <p className="text-muted-foreground text-sm flex items-center gap-1.5">
-            Built with <Heart className="h-3.5 w-3.5 text-red-500 fill-red-500" /> using Next.js & TailwindCSS
-          </p>
         </div>
       </div>
     </footer>

@@ -294,7 +294,7 @@ export default function Hero() {
                 <div className="flex flex-col text-sm text-muted-foreground">
                   <div className="flex items-center">
                     <div className="w-2 h-2 rounded-full bg-primary mr-2"></div>
-                    <span>Currently at <span className="font-medium text-primary"><Link href="https://www.recro.com/" target="_blank" rel="noopener noreferrer">Recro Corporation</Link></span> as Junior Software Engineer</span>
+                    <span>Currently at <span className="font-medium text-primary"><Link href="https://www.recro.com/" target="_blank" rel="noopener noreferrer">Recro Corporation</Link></span> as Solutions Engineer</span>
                   </div>
                 </div>
               </div>

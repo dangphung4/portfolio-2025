@@ -19,17 +19,17 @@ export const config = {
     about: [
       "I'm a junior developer who loves cheesecake.",
       "I am currently pursing a B.Sc in Computer Science at the University of Mary Washington.",
-      "Currently, I am working as a Junior Software Engineer at Recro Corporation.",
+      "Currently, I am working as a Solutions Engineer at Recro Corporation.",
       "I like to run, play around with new technologies, and read webtoons.",
     ],
-    job: "Junior Software Engineer",
+    job: "Solutions Engineer",
     started: "2023-06-01",
     yearsOfExperience: getYearsOfExperience(new Date("2023-06-01")),
     stack: "This site was built with Next.js, and Tailwind.",
     hobby: "gamble my life savings",
     projectLink: "/projects",
     resumeLink:
-      "https://drive.google.com/file/d/1dNVVXDWa5p81EOZHs0MHrrvlxI4Rp75z/view?usp=sharing",
+      "https://drive.google.com/file/d/1gd8QS_RRC9odaexai_qGo5jsYp1IySns/view?usp=sharing",
   },
   about: {
     certificationsAndAchievements: [
@@ -65,6 +65,29 @@ export const config = {
     ],
     workExperiences: [
       {
+        years: "October 2025 - Present",
+        title: "Solutions Engineer",
+        company: "Recro Corporation (Remote)",
+        logoUrl: "/companies/recro_co_logo-1.jpeg",
+        link: "https://recro.com/",
+        contributions: [
+          "Lead client-facing solutions engineering for custom software development contracts, managing full-stack web applications from requirements gathering through deployment and maintenance",
+          "Architecting and developing quantum encryption management platform for Qrypt using Next.js, React, TypeScript, Rust, and Figma, enabling enterprise customers to monitor telemetry and insights across AWS, cloud providers, and air-gapped environments",
+        ],
+      },
+      {
+        years: "Jan 2024 - October 2025",
+        title: "Junior Software Engineer",
+        company: "Recro Corporation (Remote)",
+        logoUrl: "/companies/recro_co_logo-1.jpeg",
+        link: "https://recro.com/",
+        contributions: [
+          "Architected and developed a complete company website overhaul using Statamic, Laravel, PHP & TailwindCSS, implementing a robust CMS system with page load time improvements of 40%, supporting the site's 300% traffic growth",
+          "Spearheaded the development of a job application portal processing 150+ applications, reducing hiring cycle time by 40% and streamlining candidate tracking across 3 departments",
+          "Integrated Elsa workflow engine for contact automation, enabling recruiters to create templated email sequences with smart response detection and automatic follow-ups, reducing manual outreach time by 90%",
+        ],
+      },
+      {
         years: "June 2024 - Present",
         title: "Software Engineer Intern",
         company: "General Dynamics Mission Systems (Hybrid)",
@@ -72,24 +95,8 @@ export const config = {
         link: "https://gdmissionsystems.com/",
         contributions: [
           "Spearheaded the development of a multi-repository nuclear monitoring system, building the primary GUI with Next.js, while architecting additional monitoring interfaces using Angular for global nuclear station tracking",
-          "Engineered a scalable monorepo architecture integrating React, Next.js and Express.js to streamline complex data visualization for internal nuclear monitoring systems across Red Hat Linux machines worldwide",
-          "Implemented Docker & Kubernetes for Linux and multiple VM deployments, reducing deployment times by 20%",
-          "Engineered and optimized Express APIs with Objection.js and Knex for SQLite, resulting in a 25% improvement in query performance and 20% reduction in database latency",
-          "Developed a comprehensive testing strategy using Jest and Supertest, achieving 95% coverage of the codebase, ensuring robust functionality and maintainability",
-        ],
-      },
-      {
-        years: "Jan 2024 - Present",
-        title: "Junior Software Engineer",
-        company: "Recro Corporation (Remote)",
-        logoUrl: "/companies/recro_co_logo-1.jpeg",
-        link: "https://recro.com/",
-        contributions: [
-          "Architected and developed a complete company website overhaul using Statamic, Laravel, PHP & TailwindCSS, implementing a robust CMS system that enabled content management and improved site performance, resulting in an increase of user traffic",
-          "Spearheaded the development of a job application portal facilitating internal job applications, enabling organization expansion",
-          "Developing a CRM recruiting platform with C#, ASP.NET Core, Aspire, Blazor, Entity Framework, PostgreSQL, and Azure leading to an efficiency increase in the recruitment team",
-          "Led the migration of over 40,000 lines of code to server-side Blazor, enhancing application performance andefficiency by 40%",
-          "Optimized complex database interactions by implementing Repository Patterns, abstracting data access from API endpoints to improve system maintainability and scalability by over 30%",
+          "Engineered a scalable monorepo architecture integrating React, Next.js and Express.js to streamline complex data visualization for internal nuclear monitoring Red Hat Linux machines worldwide",
+          "Led complete rewrite of legacy Angular codebase to Next.js and shadcn/ui design system, modernizing the entire application architecture and improving build and render times by over 80%",
         ],
       },
       {
@@ -100,20 +107,20 @@ export const config = {
         link: "https://mofilo.app/",
         contributions: [
           "Led the development of a fitness mobile app using React Native and integrated microservices with AWS Amplify, Lambda, Ec2, AppSync, and DynamoDB, resulting in a 20% reduction in response time",
-          "Developed API's with Node.js & Python with a scalable DynamoDB architecture, allowing for 30% reduction in operational costs",
-          "Conducted code reviews and created GitHub Actions pipelines resulting in a 30% increase in code quality by automating builds, tests, and deployments",
+          "Optimized APIs with Node.js and Python, reducing DynamoDB queries and operational costs by 30%",
+          "Implemented GitHub Actions CI/CD pipelines, reducing deployment failures by 30% through automated testing",
         ],
       },
       {
-        years: "June 2023 - Aug 2024",
+        years: "June 2023 - August 2023",
         title: "Software Engineer Intern",
         company: "Bridge Core (Hybrid)",
         logoUrl: "/companies/bcore-mark.png",
         link: "https://bcore.com/",
         contributions: [
-          "Spearheaded the development of an autonomous bidirectional sync API with Bluescape, boosting data efficiency by over 30% and improving data efficiency by 40%",
-          "Maintained 95% application uptime with Lambda & EC2 integrations and enhanced API documentation for 3+ million users",
-          "Designed and optimized webhooks using FastAPI, GraphQL, Node.js refining data processing for 30+ endpoints",
+          "Spearheaded the development of an autonomous bidirectional sync API with Bluescape, boosting data efficiency by over 30%",
+          "Maintained 95% application uptime through Lambda and EC2 integrations, supporting API used by 3M+ users",
+          "Designed and optimized webhooks using FastAPI, GraphQL, Node.js, refining data processing for 30+ endpoints",
         ],
       },
     ],
@@ -123,7 +130,7 @@ export const config = {
         institute: "University of Mary Washington",
         address: "Fredericksburg, VA, USA",
         years: "2022 - 2026",
-        gpa: "3.84",
+        gpa: "3.77",
         logoUrl: "/education/umwlogo.jpg",
         link: "https://umw.edu/",
       },
@@ -200,7 +207,7 @@ export const config = {
     { title: "Projects", url: "/projects" },
     {
       title: "Resume",
-      url: "https://drive.google.com/file/d/1dNVVXDWa5p81EOZHs0MHrrvlxI4Rp75z/view?usp=sharing",
+      url: "https://drive.google.com/file/d/1gd8QS_RRC9odaexai_qGo5jsYp1IySns/view?usp=sharing",
       external: true,
     },
     {
@@ -266,7 +273,7 @@ export const config = {
       appName: "Chardle",
       url: "https://chardle.com",
       about:
-        "A daily character guessing game featuring characters from popular series like Avatar, Star Wars, and Percy Jackson.",
+        "A daily character guessing game co-founded with advertising company Venatus,serving 120,000+ active monthly users.",
       tags: [
         "React.js",
         "TypeScript",
@@ -414,7 +421,7 @@ export const config = {
     },
     {
       avatar: "/testimonials/jasontay.jpeg",
-      role: "3rd year Biochemistry Major at Hampton University",
+      role: "PostBacc Student at Dartmouth College",
       name: "Jason Taylor",
       message:
         "Dang is a good friend of mine. He loves this field, and is very passionate about it. He is always willing to help others, and is a great asset to any team.",

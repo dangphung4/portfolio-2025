@@ -126,6 +126,23 @@ export function FoodReviewForm({
     window.open(mapsUrl, "_blank");
   };
 
+  const searchNearby = () => {
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setSearchQuery(`restaurants near ${latitude},${longitude}`);
+        },
+        (error) => {
+          alert("Unable to get your location. Please check your browser permissions.");
+          console.error("Geolocation error:", error);
+        }
+      );
+    } else {
+      alert("Geolocation is not supported by your browser");
+    }
+  };
+
   const searchRestaurants = async (query: string) => {
     if (!query || query.length < 2) {
       setSearchResults([]);
@@ -350,50 +367,56 @@ export function FoodReviewForm({
                 </span>
               )}
             </div>
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-              <Input
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={() => searchResults.length > 0 && setShowResults(true)}
-                placeholder="Type restaurant name (e.g., 'Olive Garden' or 'pizza near me')"
-                className="pl-9"
-                autoComplete="off"
-              />
-              {isSearching && (
-                <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                  <div className="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full" />
-                </div>
-              )}
-              
-              {showResults && searchResults.length > 0 && (
-                <div className="absolute left-0 right-0 top-full mt-2 bg-background border rounded-lg shadow-lg max-h-80 overflow-y-auto z-50">
-                  {searchResults.map((place, index) => (
-                    <button
-                      key={place.id || index}
-                      type="button"
-                      onClick={() => selectRestaurant(place)}
-                      className="w-full px-4 py-3 text-left hover:bg-muted transition-colors border-b last:border-b-0"
-                    >
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="flex-1 min-w-0">
-                          <div className="font-medium text-sm flex items-center gap-2">
-                            {place.name}
-                            {place.rating && (
-                              <span className="text-xs text-muted-foreground">
-                                ⭐ {place.rating}
-                              </span>
-                            )}
-                          </div>
-                          <div className="text-xs text-muted-foreground mt-1 line-clamp-2">
-                            {place.address}
+            <div className="flex gap-2">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onFocus={() => searchResults.length > 0 && setShowResults(true)}
+                  placeholder="Type restaurant name (e.g., 'Olive Garden' or 'pizza near me')"
+                  className="pl-9"
+                  autoComplete="off"
+                />
+                {showResults && searchResults.length > 0 && (
+                  <div className="absolute left-0 right-0 top-full mt-2 bg-background border rounded-lg shadow-lg max-h-80 overflow-y-auto z-50">
+                    {searchResults.map((place, index) => (
+                      <button
+                        key={place.id || index}
+                        type="button"
+                        onClick={() => selectRestaurant(place)}
+                        className="w-full px-4 py-3 text-left hover:bg-muted transition-colors border-b last:border-b-0"
+                      >
+                        <div className="flex items-start justify-between gap-2">
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-sm flex items-center gap-2">
+                              {place.name}
+                              {place.rating && (
+                                <span className="text-xs text-muted-foreground">
+                                  ⭐ {place.rating}
+                                </span>
+                              )}
+                            </div>
+                            <div className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                              {place.address}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </button>
-                  ))}
-                </div>
-              )}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+              <Button
+                type="button"
+                variant="outline"
+                onClick={searchNearby}
+                size="sm"
+                title="Search nearby restaurants"
+                className="flex-shrink-0"
+              >
+                <MapPin className="h-4 w-4" />
+              </Button>
             </div>
             
             {showResults && searchResults.length === 0 && searchQuery.length >= 2 && !isSearching && (
@@ -403,7 +426,7 @@ export function FoodReviewForm({
             )}
             
             <p className="text-xs text-muted-foreground mt-2">
-              💡 Start typing (just 2 letters!) to search and auto-fill all details instantly
+              💡 Start typing (just 2 letters!) to search, or click <MapPin className="inline h-3 w-3" /> to find nearby restaurants
             </p>
           </div>
 

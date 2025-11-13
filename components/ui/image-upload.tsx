@@ -5,7 +5,7 @@ import { Button } from "./button";
 import { Input } from "./input";
 import { Badge } from "./badge";
 import { Card } from "./card";
-import { X, Upload, Link as LinkIcon, Plus } from "lucide-react";
+import { X, Plus } from "lucide-react";
 import Image from "next/image";
 
 interface ImageUploadProps {
@@ -20,26 +20,6 @@ export function ImageUpload({
   maxImages = 6,
 }: ImageUploadProps) {
   const [urlInput, setUrlInput] = useState("");
-  const [showUrlInput, setShowUrlInput] = useState(false);
-
-  const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files;
-    if (!files) return;
-
-    Array.from(files).forEach((file) => {
-      if (images.length >= maxImages) {
-        alert(`Maximum ${maxImages} images allowed`);
-        return;
-      }
-
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const base64String = reader.result as string;
-        onImagesChange([...images, base64String]);
-      };
-      reader.readAsDataURL(file);
-    });
-  };
 
   const handleUrlAdd = () => {
     if (!urlInput.trim()) return;
@@ -53,7 +33,6 @@ export function ImageUpload({
       new URL(urlInput);
       onImagesChange([...images, urlInput]);
       setUrlInput("");
-      setShowUrlInput(false);
     } catch {
       alert("Please enter a valid URL");
     }
@@ -65,39 +44,8 @@ export function ImageUpload({
 
   return (
     <div className="space-y-3">
-      <div className="flex flex-wrap gap-2">
-        <label htmlFor="file-upload">
-          <div className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-9 px-3 cursor-pointer">
-            <Upload className="h-4 w-4 mr-2" />
-            Upload Image
-          </div>
-          <input
-            id="file-upload"
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handleFileUpload}
-            className="hidden"
-          />
-        </label>
-
-        <Button
-          type="button"
-          variant="outline"
-          size="sm"
-          onClick={() => setShowUrlInput(!showUrlInput)}
-        >
-          <LinkIcon className="h-4 w-4 mr-2" />
-          Add URL
-        </Button>
-
-        <Badge variant="secondary" className="ml-auto">
-          {images.length}/{maxImages}
-        </Badge>
-      </div>
-
-      {showUrlInput && (
-        <div className="flex gap-2">
+      <div className="flex flex-wrap gap-2 items-center">
+        <div className="flex gap-2 flex-1">
           <Input
             placeholder="https://example.com/image.jpg"
             value={urlInput}
@@ -108,12 +56,22 @@ export function ImageUpload({
                 handleUrlAdd();
               }
             }}
+            className="flex-1"
           />
           <Button type="button" onClick={handleUrlAdd} size="sm">
-            <Plus className="h-4 w-4" />
+            <Plus className="h-4 w-4 mr-1" />
+            Add
           </Button>
         </div>
-      )}
+
+        <Badge variant="secondary" className="ml-auto">
+          {images.length}/{maxImages}
+        </Badge>
+      </div>
+
+      <p className="text-xs text-muted-foreground">
+        Add image URLs only (e.g., from Imgur, Cloudinary, or direct image links)
+      </p>
 
       {images.length > 0 && (
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">

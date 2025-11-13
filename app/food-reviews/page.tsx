@@ -7,6 +7,7 @@ import { FoodReview } from "@/lib/config";
 import { FoodReviewCard } from "@/components/ui/food-review-card";
 import { FoodReviewForm } from "@/components/ui/food-review-form";
 import { RestaurantLocationsList } from "@/components/ui/food-reviews-map";
+import { AuthGate } from "@/components/ui/auth-gate";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -153,29 +154,31 @@ export default function FoodReviewsPage() {
   if (showForm) {
     return (
       <div className="container max-w-4xl mx-auto px-4 py-8">
-        <FoodReviewForm
-          review={editingReview}
-          onSubmit={handleSubmitReview}
-          onCancel={handleCancelForm}
-          mode={formMode}
-        />
+        <AuthGate action={editingReview ? "edit this review" : "add a review"}>
+          <FoodReviewForm
+            review={editingReview}
+            onSubmit={handleSubmitReview}
+            onCancel={handleCancelForm}
+            mode={formMode}
+          />
+        </AuthGate>
       </div>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 space-y-8">
+    <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 space-y-6 sm:space-y-8">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="text-center space-y-4"
+        className="text-center space-y-3 sm:space-y-4"
       >
-        <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent px-4">
           Food Reviews
         </h1>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
           My personal collection of restaurant reviews and food adventures.
           Quick ratings and in-depth reviews of places I&apos;ve visited.
         </p>
@@ -186,53 +189,53 @@ export default function FoodReviewsPage() {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.1 }}
-        className="grid grid-cols-2 md:grid-cols-4 gap-4"
+        className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4"
       >
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <MapPin className="h-4 w-4" />
-              Total Reviews
+        <Card className="border-border/40">
+          <CardHeader className="pb-2 sm:pb-3">
+            <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground flex items-center gap-1.5 sm:gap-2">
+              <MapPin className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span className="truncate">Total Reviews</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{stats.totalReviews}</p>
+            <p className="text-2xl sm:text-3xl font-bold">{stats.totalReviews}</p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Star className="h-4 w-4" />
-              Avg Rating
+        <Card className="border-border/40">
+          <CardHeader className="pb-2 sm:pb-3">
+            <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground flex items-center gap-1.5 sm:gap-2">
+              <Star className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span className="truncate">Avg Rating</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{stats.averageRating}</p>
+            <p className="text-2xl sm:text-3xl font-bold">{stats.averageRating}</p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <Heart className="h-4 w-4" />
-              Favorites
+        <Card className="border-border/40">
+          <CardHeader className="pb-2 sm:pb-3">
+            <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground flex items-center gap-1.5 sm:gap-2">
+              <Heart className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span className="truncate">Favorites</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{stats.favoriteCount}</p>
+            <p className="text-2xl sm:text-3xl font-bold">{stats.favoriteCount}</p>
           </CardContent>
         </Card>
 
-        <Card>
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-              <TrendingUp className="h-4 w-4" />
-              Cuisines
+        <Card className="border-border/40">
+          <CardHeader className="pb-2 sm:pb-3">
+            <CardTitle className="text-xs sm:text-sm font-medium text-muted-foreground flex items-center gap-1.5 sm:gap-2">
+              <TrendingUp className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+              <span className="truncate">Cuisines</span>
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <p className="text-3xl font-bold">{stats.cuisineCount}</p>
+            <p className="text-2xl sm:text-3xl font-bold">{stats.cuisineCount}</p>
           </CardContent>
         </Card>
       </motion.div>
@@ -244,49 +247,54 @@ export default function FoodReviewsPage() {
         transition={{ duration: 0.5, delay: 0.2 }}
         className="space-y-4"
       >
-        <div className="flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
-          <div className="flex flex-wrap gap-2">
-            <Button onClick={handleCreateReview}>
-              <Plus className="h-4 w-4 mr-2" />
-              Add Review
-            </Button>
-            <Button
-              variant={showFavoritesOnly ? "default" : "outline"}
-              onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
-            >
-              <Heart
-                className={`h-4 w-4 mr-2 ${showFavoritesOnly ? "fill-current" : ""}`}
-              />
-              Favorites
-            </Button>
-            {reviews.length === 0 && (
-              <Button variant="outline" onClick={handleLoadSampleData}>
-                <Download className="h-4 w-4 mr-2" />
-                Load Sample Data
+        <div className="flex flex-col gap-3 sm:gap-4">
+          <div className="flex flex-col sm:flex-row gap-2 sm:gap-3">
+            <div className="flex flex-wrap gap-2 flex-1">
+              <Button onClick={handleCreateReview} className="flex-1 sm:flex-initial">
+                <Plus className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">Add Review</span>
+                <span className="sm:hidden">Add</span>
               </Button>
-            )}
-          </div>
+              <Button
+                variant={showFavoritesOnly ? "default" : "outline"}
+                onClick={() => setShowFavoritesOnly(!showFavoritesOnly)}
+                className="flex-1 sm:flex-initial"
+              >
+                <Heart
+                  className={`h-4 w-4 sm:mr-2 ${showFavoritesOnly ? "fill-current" : ""}`}
+                />
+                <span className="hidden sm:inline">Favorites</span>
+                <span className="sm:hidden">Favs</span>
+              </Button>
+              {reviews.length === 0 && (
+                <Button variant="outline" onClick={handleLoadSampleData} className="flex-1 sm:flex-initial">
+                  <Download className="h-4 w-4 sm:mr-2" />
+                  <span className="hidden sm:inline">Load Sample Data</span>
+                  <span className="sm:hidden">Sample</span>
+                </Button>
+              )}
+            </div>
 
-          <div className="flex gap-2 items-center w-full md:w-auto">
-            <div className="relative flex-1 md:w-64">
+            <div className="relative w-full sm:w-64">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 placeholder="Search reviews..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-9"
+                className="pl-9 w-full"
               />
             </div>
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-2 items-center">
-          <Filter className="h-4 w-4 text-muted-foreground" />
-          <span className="text-sm text-muted-foreground">Cuisine:</span>
+        <div className="flex flex-wrap gap-2 items-center text-sm">
+          <Filter className="h-4 w-4 text-muted-foreground hidden sm:block" />
+          <span className="text-xs sm:text-sm text-muted-foreground font-medium">Cuisine:</span>
           <Button
             variant={filterCuisine === "" ? "default" : "outline"}
             size="sm"
             onClick={() => setFilterCuisine("")}
+            className="text-xs sm:text-sm h-8"
           >
             All
           </Button>
@@ -296,18 +304,20 @@ export default function FoodReviewsPage() {
               variant={filterCuisine === cuisine ? "default" : "outline"}
               size="sm"
               onClick={() => setFilterCuisine(cuisine)}
+              className="text-xs sm:text-sm h-8"
             >
               {cuisine}
             </Button>
           ))}
         </div>
 
-        <div className="flex flex-wrap gap-2 items-center">
-          <span className="text-sm text-muted-foreground">Sort by:</span>
+        <div className="flex flex-wrap gap-2 items-center text-sm">
+          <span className="text-xs sm:text-sm text-muted-foreground font-medium">Sort by:</span>
           <Button
             variant={sortBy === "date" ? "default" : "outline"}
             size="sm"
             onClick={() => setSortBy("date")}
+            className="text-xs sm:text-sm h-8"
           >
             Date
           </Button>
@@ -315,6 +325,7 @@ export default function FoodReviewsPage() {
             variant={sortBy === "rating" ? "default" : "outline"}
             size="sm"
             onClick={() => setSortBy("rating")}
+            className="text-xs sm:text-sm h-8"
           >
             Rating
           </Button>
@@ -322,6 +333,7 @@ export default function FoodReviewsPage() {
             variant={sortBy === "name" ? "default" : "outline"}
             size="sm"
             onClick={() => setSortBy("name")}
+            className="text-xs sm:text-sm h-8"
           >
             Name
           </Button>

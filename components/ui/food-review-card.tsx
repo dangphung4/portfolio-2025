@@ -51,20 +51,20 @@ export function FoodReviewCard({
   };
 
   return (
-    <Card className="group overflow-hidden transition-all hover:shadow-lg">
-      <CardHeader className="pb-3">
-        <div className="flex items-start justify-between gap-2">
+    <Card className="group overflow-hidden transition-all hover:shadow-lg border-border/40 hover:border-border">
+      <CardHeader className="pb-3 sm:pb-4">
+        <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
           <div className="flex-1 min-w-0">
-            <div className="flex items-center gap-2 mb-1">
-              <h3 className="font-semibold text-lg truncate">
+            <div className="flex items-start gap-2 mb-2">
+              <h3 className="font-semibold text-lg sm:text-xl leading-tight flex-1">
                 {review.restaurantName}
               </h3>
               {review.isFavorite && (
-                <Heart className="h-4 w-4 fill-red-500 text-red-500 flex-shrink-0" />
+                <Heart className="h-4 w-4 fill-red-500 text-red-500 flex-shrink-0 mt-1" />
               )}
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-              <StarRatingDisplay rating={review.rating} size={16} />
+              <StarRatingDisplay rating={review.rating} size={18} />
               <Badge variant="secondary" className="text-xs">
                 {review.cuisineType}
               </Badge>
@@ -80,7 +80,7 @@ export function FoodReviewCard({
               variant="ghost"
               size="sm"
               onClick={() => onToggleFavorite(review.id)}
-              className="flex-shrink-0"
+              className="flex-shrink-0 self-start sm:self-auto -mt-1 sm:mt-0"
             >
               <Heart
                 className={cn(
@@ -93,15 +93,15 @@ export function FoodReviewCard({
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-3">
+      <CardContent className="space-y-3 sm:space-y-4">
         {/* Location */}
         <button
           onClick={handleMapClick}
-          className="flex items-start gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors w-full text-left group/location"
+          className="flex items-start gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors w-full text-left group/location p-2 -ml-2 rounded-md hover:bg-muted/50"
         >
           <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0 group-hover/location:text-primary" />
-          <span className="line-clamp-2">{review.location.address}</span>
-          <ExternalLink className="h-3 w-3 mt-0.5 opacity-0 group-hover/location:opacity-100 transition-opacity" />
+          <span className="line-clamp-2 flex-1">{review.location.address}</span>
+          <ExternalLink className="h-3 w-3 mt-0.5 opacity-0 group-hover/location:opacity-100 transition-opacity flex-shrink-0" />
         </button>
 
         {/* Visit Date */}
@@ -112,14 +112,14 @@ export function FoodReviewCard({
 
         {/* Quick Notes */}
         {review.quickNotes && (
-          <p className="text-sm text-muted-foreground line-clamp-2">
+          <p className="text-sm text-muted-foreground line-clamp-3 leading-relaxed">
             {review.quickNotes}
           </p>
         )}
 
         {/* Detailed Review */}
         {review.detailedReview && (
-          <p className="text-sm line-clamp-3">{review.detailedReview}</p>
+          <p className="text-sm line-clamp-4 leading-relaxed">{review.detailedReview}</p>
         )}
 
         {/* Dishes Ordered */}
@@ -156,17 +156,17 @@ export function FoodReviewCard({
 
         {/* Images Preview */}
         {review.images && review.images.length > 0 && (
-          <div className="grid grid-cols-3 gap-2 mt-2">
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
             {review.images.slice(0, 3).map((image, index) => (
               <div
                 key={index}
-                className="relative aspect-square rounded-md overflow-hidden bg-muted"
+                className="relative aspect-square rounded-lg overflow-hidden bg-muted ring-1 ring-border/40"
               >
                 <Image
                   src={image}
                   alt={`${review.restaurantName} - Image ${index + 1}`}
                   fill
-                  className="object-cover"
+                  className="object-cover transition-transform group-hover:scale-105"
                 />
               </div>
             ))}
@@ -174,15 +174,15 @@ export function FoodReviewCard({
         )}
       </CardContent>
 
-      <CardFooter className="pt-3 gap-2">
+      <CardFooter className="pt-3 gap-2 flex-col sm:flex-row">
         {onEdit && (
           <Button
             variant="outline"
             size="sm"
             onClick={() => onEdit(review)}
-            className="flex-1"
+            className="flex-1 w-full sm:w-auto"
           >
-            <Edit className="h-4 w-4 mr-1" />
+            <Edit className="h-4 w-4 mr-2" />
             Edit
           </Button>
         )}
@@ -191,9 +191,9 @@ export function FoodReviewCard({
             variant="outline"
             size="sm"
             onClick={() => onDelete(review.id)}
-            className="flex-1 text-destructive hover:text-destructive"
+            className="flex-1 w-full sm:w-auto text-destructive hover:text-destructive hover:bg-destructive/10"
           >
-            <Trash2 className="h-4 w-4 mr-1" />
+            <Trash2 className="h-4 w-4 mr-2" />
             Delete
           </Button>
         )}

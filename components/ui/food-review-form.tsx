@@ -9,6 +9,7 @@ import { Textarea } from "./textarea";
 import { Badge } from "./badge";
 import { Card, CardContent, CardHeader, CardTitle } from "./card";
 import { X, Plus, MapPin } from "lucide-react";
+import { ImageUpload } from "./image-upload";
 
 interface FoodReviewFormProps {
   review?: FoodReview | null;
@@ -48,6 +49,7 @@ export function FoodReviewForm({
   const [currentDish, setCurrentDish] = useState("");
   const [tags, setTags] = useState<string[]>(review?.tags || []);
   const [currentTag, setCurrentTag] = useState("");
+  const [images, setImages] = useState<string[]>(review?.images || []);
   const [isFavorite, setIsFavorite] = useState(review?.isFavorite || false);
   const [wouldRecommend, setWouldRecommend] = useState(
     review?.wouldRecommend || false
@@ -98,6 +100,7 @@ export function FoodReviewForm({
       priceRange: priceRange as 1 | 2 | 3 | 4 | undefined,
       dishesOrdered: dishesOrdered.length > 0 ? dishesOrdered : undefined,
       tags: tags.length > 0 ? tags : undefined,
+      images: images.length > 0 ? images : undefined,
       createdAt: review?.createdAt || now,
       updatedAt: now,
       isFavorite,
@@ -350,6 +353,11 @@ export function FoodReviewForm({
                     </Badge>
                   ))}
                 </div>
+              </div>
+
+              <div>
+                <label className="text-sm font-medium block mb-2">Images</label>
+                <ImageUpload images={images} onImagesChange={setImages} />
               </div>
 
               <div className="flex gap-4">

@@ -22,14 +22,12 @@ import {
   MapPin,
   Map,
   List,
-  LogIn,
-  LogOut,
   Lock,
   ArrowLeft,
   Trash2,
 } from "lucide-react";
 
-export default function FoodReviewsPage() {
+function FoodReviewsContent() {
   const searchParams = useSearchParams();
   const { isAdmin, login, logout, password } = useAuth();
   const {
@@ -195,7 +193,7 @@ export default function FoodReviewsPage() {
       }
       setShowForm(false);
       setEditingReview(null);
-    } catch (error) {
+    } catch {
       alert("Failed to save review. Please try again.");
     }
   };
@@ -208,7 +206,7 @@ export default function FoodReviewsPage() {
     if (confirm("Are you sure you want to delete this review?")) {
       try {
         await deleteReview(id);
-      } catch (error) {
+      } catch {
         alert("Failed to delete review. Please try again.");
       }
     }
@@ -578,5 +576,17 @@ export default function FoodReviewsPage() {
         )}
       </div>
     </>
+  );
+}
+
+export default function FoodReviewsPage() {
+  return (
+    <React.Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center">
+        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary"></div>
+      </div>
+    }>
+      <FoodReviewsContent />
+    </React.Suspense>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { FoodReview } from "@/lib/config";
 import { StarRating } from "./star-rating";
 import { Button } from "./button";
@@ -9,7 +9,6 @@ import { Textarea } from "./textarea";
 import { Badge } from "./badge";
 import { Card, CardContent, CardHeader, CardTitle } from "./card";
 import { X, Plus, MapPin } from "lucide-react";
-import { cn } from "@/lib/utils";
 
 interface FoodReviewFormProps {
   review?: FoodReview | null;

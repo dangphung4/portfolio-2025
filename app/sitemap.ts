@@ -4,13 +4,6 @@ import { config } from '@/lib/config'
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = config.website
 
-  const projectUrls = config.projects.map((project) => ({
-    url: project.url,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.7,
-  }))
-
   return [
     {
       url: baseUrl,
@@ -29,6 +22,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/food-reviews`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
     },
     {
       url: `${baseUrl}/contact`,

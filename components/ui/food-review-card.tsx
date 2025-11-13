@@ -10,7 +10,6 @@ import { Button } from "./button";
 import {
   MapPin,
   Calendar,
-  DollarSign,
   Heart,
   Edit,
   Trash2,

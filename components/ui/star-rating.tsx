@@ -97,7 +97,6 @@ export function StarRatingDisplay({
     <div className={cn("flex items-center gap-2", className)}>
       <div className="flex items-center gap-0.5">
         {Array.from({ length: maxRating }, (_, index) => {
-          const starValue = index + 1;
           const fillPercentage = Math.min(
             100,
             Math.max(0, (rating - index) * 100)

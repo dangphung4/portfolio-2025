@@ -1,20 +1,18 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { FoodReview } from "@/lib/config";
 import { Card } from "./card";
 
 interface FoodReviewsMapProps {
   reviews: FoodReview[];
   selectedReview?: FoodReview | null;
-  onMarkerClick?: (review: FoodReview) => void;
   className?: string;
 }
 
 export function FoodReviewsMap({
   reviews,
   selectedReview,
-  onMarkerClick,
   className,
 }: FoodReviewsMapProps) {
   const mapContainerRef = useRef<HTMLIFrameElement>(null);

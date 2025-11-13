@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { config } from "@/lib/config"
-import { Github, Linkedin, Mail, ExternalLink, ArrowUp, Heart } from "lucide-react"
+import { Github, Linkedin, Mail, ExternalLink, ArrowUp } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export default function Footer() {

@@ -9,9 +9,7 @@ import { FoodReviewForm } from "@/components/ui/food-review-form";
 import { RestaurantLocationsList } from "@/components/ui/food-reviews-map";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { initializeSampleReviews } from "@/lib/sample-reviews";
 import {
   Plus,
@@ -34,8 +32,6 @@ export default function FoodReviewsPage() {
     updateReview,
     deleteReview,
     toggleFavorite,
-    getTopRated,
-    getFavorites,
     getCuisineTypes,
     getStats,
   } = useFoodReviews();
@@ -181,7 +177,7 @@ export default function FoodReviewsPage() {
         </h1>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
           My personal collection of restaurant reviews and food adventures.
-          Quick ratings and in-depth reviews of places I've visited.
+          Quick ratings and in-depth reviews of places I&apos;ve visited.
         </p>
       </motion.div>
 

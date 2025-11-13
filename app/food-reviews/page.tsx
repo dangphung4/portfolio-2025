@@ -52,7 +52,8 @@ function FoodReviewsContent() {
   const [sortBy, setSortBy] = useState<"rating" | "date" | "name">("date");
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
-  const [longPressTimer, setLongPressTimer] = useState<NodeJS.Timeout | null>(null);
+  const [tapCount, setTapCount] = useState(0);
+  const [tapTimeout, setTapTimeout] = useState<NodeJS.Timeout | null>(null);
 
   const stats = getStats();
   const cuisineTypes = getCuisineTypes();
@@ -69,22 +70,32 @@ function FoodReviewsContent() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, reviews, isAdmin]);
 
-  const handleTitleTouchStart = () => {
-    const timer = setTimeout(() => {
+  // Secret admin access: Tap title 5 times quickly (mobile-friendly)
+  const handleTitleTap = () => {
+    const newCount = tapCount + 1;
+    setTapCount(newCount);
+
+    // Clear existing timeout
+    if (tapTimeout) {
+      clearTimeout(tapTimeout);
+    }
+
+    // If reached 5 taps, open admin
+    if (newCount >= 5) {
+      setTapCount(0);
       if (isAdmin) {
         logout();
       } else {
         setShowLoginModal(true);
       }
-    }, 1000);
-    setLongPressTimer(timer);
-  };
-
-  const handleTitleTouchEnd = () => {
-    if (longPressTimer) {
-      clearTimeout(longPressTimer);
-      setLongPressTimer(null);
+      return;
     }
+
+    // Reset count after 2 seconds of no taps
+    const timeout = setTimeout(() => {
+      setTapCount(0);
+    }, 2000);
+    setTapTimeout(timeout);
   };
 
   // Secret keyboard shortcut: Ctrl+Shift+L (desktop)
@@ -325,14 +336,15 @@ function FoodReviewsContent() {
           className="text-center space-y-3 sm:space-y-4"
         >
           <h1 
-            onTouchStart={handleTitleTouchStart}
-            onTouchEnd={handleTitleTouchEnd}
-            onMouseDown={handleTitleTouchStart}
-            onMouseUp={handleTitleTouchEnd}
-            onMouseLeave={handleTitleTouchEnd}
-            className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent px-4 cursor-default select-none active:opacity-70 transition-opacity"
+            onClick={handleTitleTap}
+            className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent px-4 cursor-default select-none active:scale-95 transition-transform"
           >
             Food Reviews
+            {tapCount > 0 && tapCount < 5 && (
+              <span className="ml-2 text-xs text-muted-foreground">
+                ({tapCount}/5)
+              </span>
+            )}
           </h1>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             My personal collection of restaurant reviews and food adventures.

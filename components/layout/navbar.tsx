@@ -9,6 +9,7 @@ import { Sun, Moon } from "lucide-react"
 import { config } from "@/lib/config"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
+import { ThemeSelector } from "@/components/theme-selector"
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -89,17 +90,23 @@ export default function Navbar() {
           </Link>
 
           {mounted && (
-            <Button variant="ghost" size="icon" onClick={toggleTheme} className="ml-2">
-              {ThemeIcon && <ThemeIcon className="h-5 w-5" />}
-            </Button>
+            <>
+              <ThemeSelector />
+              <Button variant="ghost" size="icon" onClick={toggleTheme} className="ml-2">
+                {ThemeIcon && <ThemeIcon className="h-5 w-5" />}
+              </Button>
+            </>
           )}
         </nav>
 
-        <div className="md:hidden">
+        <div className="md:hidden flex items-center">
           {mounted && (
-            <Button variant="ghost" size="icon" onClick={toggleTheme} className="mr-2">
-              {ThemeIcon && <ThemeIcon className="h-5 w-5" />}
-            </Button>
+            <>
+              <ThemeSelector />
+              <Button variant="ghost" size="icon" onClick={toggleTheme} className="ml-2">
+                {ThemeIcon && <ThemeIcon className="h-5 w-5" />}
+              </Button>
+            </>
           )}
           
         </div>

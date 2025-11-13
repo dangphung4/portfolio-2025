@@ -12,32 +12,15 @@ import { X, Plus, MapPin, Search } from "lucide-react";
 import { ImageUpload } from "./image-upload";
 import { LocationMapPreview } from "./location-map-preview";
 
-interface PlaceResult {
-  display_name: string;
+interface PlaceSearchResult {
+  id: string | number;
   name: string;
-  lat: string;
-  lon: string;
-  address?: {
-    road?: string;
-    city?: string;
-    state?: string;
-    country?: string;
-    postcode?: string;
-  };
-  type?: string;
-}
-
-interface GooglePlace {
-  place_id: string;
-  name: string;
-  formatted_address: string;
-  geometry: {
-    location: {
-      lat: number;
-      lng: number;
-    };
-  };
-  types: string[];
+  address: string;
+  lat: number;
+  lng: number;
+  types?: string[];
+  rating?: number;
+  source: 'google' | 'openstreetmap';
 }
 
 interface FoodReviewFormProps {
@@ -85,7 +68,7 @@ export function FoodReviewForm({
   );
   const [timesVisited, setTimesVisited] = useState(review?.timesVisited || 1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [searchResults, setSearchResults] = useState<PlaceSearchResult[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const [searchSource, setSearchSource] = useState<'google' | 'openstreetmap' | null>(null);
@@ -227,7 +210,7 @@ export function FoodReviewForm({
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const selectRestaurant = (place: any) => {
+  const selectRestaurant = (place: PlaceSearchResult) => {
     setRestaurantName(place.name);
     setAddress(place.address);
     setLat(typeof place.lat === 'number' ? place.lat : parseFloat(place.lat));

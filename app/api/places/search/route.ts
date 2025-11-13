@@ -18,7 +18,15 @@ export async function GET(request: NextRequest) {
       const data = await response.json();
       
       if (data.status === 'OK') {
-        const results = data.results.slice(0, 10).map((place: any) => ({
+        const results = data.results.slice(0, 10).map((place: {
+          place_id: string;
+          name: string;
+          formatted_address: string;
+          geometry: { location: { lat: number; lng: number } };
+          types: string[];
+          rating?: number;
+          user_ratings_total?: number;
+        }) => ({
           id: place.place_id,
           name: place.name,
           address: place.formatted_address,
@@ -27,7 +35,7 @@ export async function GET(request: NextRequest) {
           types: place.types,
           rating: place.rating,
           user_ratings_total: place.user_ratings_total,
-          source: 'google'
+          source: 'google' as const
         }));
         
         return NextResponse.json({ results });
@@ -52,14 +60,21 @@ export async function GET(request: NextRequest) {
     );
     const data = await response.json();
     
-    const results = data.map((place: any) => ({
+    const results = data.map((place: {
+      place_id: string;
+      name?: string;
+      display_name: string;
+      lat: string;
+      lon: string;
+      type?: string;
+    }) => ({
       id: place.place_id,
       name: place.name || place.display_name.split(',')[0],
       address: place.display_name,
       lat: parseFloat(place.lat),
       lng: parseFloat(place.lon),
       types: place.type ? [place.type] : [],
-      source: 'openstreetmap'
+      source: 'openstreetmap' as const
     }));
     
     return NextResponse.json({ results });

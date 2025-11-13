@@ -25,7 +25,7 @@ export default function MobileNav() {
     { name: "Contact", icon: Mail, href: "/contact" },
   ]
 
-  const handleNavigation = (href: string) => {
+  const handleNavigation = () => {
     setIsOpen(false)
   }
 
@@ -34,7 +34,7 @@ export default function MobileNav() {
   }
 
   return (
-    <div className="md:hidden fixed bottom-4 right-4 flex flex-col items-end gap-3 z-50">
+    <div className="md:hidden fixed flex flex-col items-end gap-3 z-50" style={{ bottom: 'max(1rem, env(safe-area-inset-bottom))', right: 'max(1rem, env(safe-area-inset-right))' }}>
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -54,7 +54,7 @@ export default function MobileNav() {
                   exit={{ opacity: 0, x: 20 }}
                   transition={{ delay: index * 0.05 }}
                 >
-                  <Link href={item.href} onClick={() => handleNavigation(item.href)}>
+                  <Link href={item.href} onClick={handleNavigation}>
                     <Button
                       variant={isActive ? "default" : "secondary"}
                       size="icon"

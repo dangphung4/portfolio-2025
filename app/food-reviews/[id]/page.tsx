@@ -16,7 +16,6 @@ import {
   Heart,
   Edit,
   Trash2,
-  ExternalLink,
   DollarSign,
   ThumbsUp,
   Share2,
@@ -102,13 +101,6 @@ export default function FoodReviewDetailPage({
   const getPriceDisplay = (priceRange?: number) => {
     if (!priceRange) return null;
     return "$".repeat(priceRange);
-  };
-
-  const handleMapClick = () => {
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      review.location.address
-    )}`;
-    window.open(mapsUrl, "_blank");
   };
 
   const handleEdit = () => {

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { FoodReview } from "@/lib/config";
 import { StarRatingDisplay } from "./star-rating";
 import { Badge } from "./badge";
@@ -14,6 +15,7 @@ import {
   Edit,
   Trash2,
   ExternalLink,
+  Eye,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -51,8 +53,13 @@ export function FoodReviewCard({
   };
 
   return (
-    <Card className="group overflow-hidden transition-all hover:shadow-lg border-border/40 hover:border-border">
-      <CardHeader className="pb-3 sm:pb-4">
+    <Card className="group overflow-hidden transition-all hover:shadow-lg border-border/40 hover:border-border relative">
+      <Link
+        href={`/food-reviews/${review.id}`}
+        className="absolute inset-0 z-0"
+        aria-label={`View details for ${review.restaurantName}`}
+      />
+      <CardHeader className="pb-3 sm:pb-4 relative z-10">
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
           <div className="flex-1 min-w-0">
             <div className="flex items-start gap-2 mb-2">
@@ -79,8 +86,11 @@ export function FoodReviewCard({
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => onToggleFavorite(review.id)}
-              className="flex-shrink-0 self-start sm:self-auto -mt-1 sm:mt-0"
+              onClick={(e) => {
+                e.preventDefault();
+                onToggleFavorite(review.id);
+              }}
+              className="flex-shrink-0 self-start sm:self-auto -mt-1 sm:mt-0 relative z-20"
             >
               <Heart
                 className={cn(
@@ -93,11 +103,14 @@ export function FoodReviewCard({
         </div>
       </CardHeader>
 
-      <CardContent className="space-y-3 sm:space-y-4">
+      <CardContent className="space-y-3 sm:space-y-4 relative z-10">
         {/* Location */}
         <button
-          onClick={handleMapClick}
-          className="flex items-start gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors w-full text-left group/location p-2 -ml-2 rounded-md hover:bg-muted/50"
+          onClick={(e) => {
+            e.preventDefault();
+            handleMapClick();
+          }}
+          className="flex items-start gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors w-full text-left group/location p-2 -ml-2 rounded-md hover:bg-muted/50 relative z-20"
         >
           <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0 group-hover/location:text-primary" />
           <span className="line-clamp-2 flex-1">{review.location.address}</span>
@@ -174,13 +187,25 @@ export function FoodReviewCard({
         )}
       </CardContent>
 
-      <CardFooter className="pt-3 gap-2 flex-col sm:flex-row">
+      <CardFooter className="pt-3 gap-2 flex-col sm:flex-row relative z-10">
+        <Link
+          href={`/food-reviews/${review.id}`}
+          className="flex-1 w-full sm:w-auto relative z-20"
+        >
+          <Button variant="default" size="sm" className="w-full">
+            <Eye className="h-4 w-4 mr-2" />
+            View Details
+          </Button>
+        </Link>
         {onEdit && (
           <Button
             variant="outline"
             size="sm"
-            onClick={() => onEdit(review)}
-            className="flex-1 w-full sm:w-auto"
+            onClick={(e) => {
+              e.preventDefault();
+              onEdit(review);
+            }}
+            className="flex-1 w-full sm:w-auto relative z-20"
           >
             <Edit className="h-4 w-4 mr-2" />
             Edit
@@ -190,8 +215,11 @@ export function FoodReviewCard({
           <Button
             variant="outline"
             size="sm"
-            onClick={() => onDelete(review.id)}
-            className="flex-1 w-full sm:w-auto text-destructive hover:text-destructive hover:bg-destructive/10"
+            onClick={(e) => {
+              e.preventDefault();
+              onDelete(review.id);
+            }}
+            className="flex-1 w-full sm:w-auto text-destructive hover:text-destructive hover:bg-destructive/10 relative z-20"
           >
             <Trash2 className="h-4 w-4 mr-2" />
             Delete

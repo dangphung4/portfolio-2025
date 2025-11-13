@@ -432,7 +432,6 @@ export const config = {
   foodReviews: [] as FoodReview[], // Will be populated via local storage for CRUD functionality
 };
 
-// Types for Food Reviews feature
 export interface FoodReview {
   id: string;
   restaurantName: string;
@@ -449,12 +448,13 @@ export interface FoodReview {
   // Quick review fields (minimal - for fast entries)
   visitDate: string; // ISO date string
   quickNotes?: string; // Optional brief thoughts
+  timesVisited?: number; // How many times visited this place
 
   // Detailed review fields (optional - can be added/updated later)
   dishesOrdered?: string[]; // Array of dish names
   detailedReview?: string; // In-depth review text
   priceRange?: 1 | 2 | 3 | 4; // $ to $$$$
-  images?: string[]; // Array of image URLs/paths
+  images?: string[]; // Array of Vercel Blob URLs
   tags?: string[]; // e.g., "Vegetarian-friendly", "Date night", "Family-friendly"
 
   // Metadata

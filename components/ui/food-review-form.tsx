@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FoodReview } from "@/lib/config";
 import { StarRating } from "./star-rating";
 import { Button } from "./button";
@@ -8,8 +8,23 @@ import { Input } from "./input";
 import { Textarea } from "./textarea";
 import { Badge } from "./badge";
 import { Card, CardContent, CardHeader, CardTitle } from "./card";
-import { X, Plus, MapPin } from "lucide-react";
+import { X, Plus, MapPin, Search } from "lucide-react";
 import { ImageUpload } from "./image-upload";
+
+interface PlaceResult {
+  display_name: string;
+  name: string;
+  lat: string;
+  lon: string;
+  address?: {
+    road?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+    postcode?: string;
+  };
+  type?: string;
+}
 
 interface FoodReviewFormProps {
   review?: FoodReview | null;
@@ -54,10 +69,17 @@ export function FoodReviewForm({
   const [wouldRecommend, setWouldRecommend] = useState(
     review?.wouldRecommend || false
   );
+  const [timesVisited, setTimesVisited] = useState(review?.timesVisited || 1);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<PlaceResult[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [showResults, setShowResults] = useState(false);
 
-  // Geocode address to get lat/lng
   const geocodeAddress = async () => {
-    if (!address) return;
+    if (!address) {
+      alert("Please enter an address first");
+      return;
+    }
 
     try {
       const response = await fetch(
@@ -69,10 +91,82 @@ export function FoodReviewForm({
       if (data && data.length > 0) {
         setLat(parseFloat(data[0].lat));
         setLng(parseFloat(data[0].lon));
+        alert(`Coordinates found!\nLatitude: ${data[0].lat}\nLongitude: ${data[0].lon}`);
+      } else {
+        alert("Could not find coordinates for this address. Try opening Google Maps to search manually.");
       }
     } catch (error) {
       console.error("Error geocoding address:", error);
+      alert("Failed to geocode address. Please try again or use Google Maps.");
     }
+  };
+
+  const openGoogleMaps = () => {
+    const query = address || restaurantName || "";
+    if (!query) {
+      alert("Please enter a restaurant name or address first");
+      return;
+    }
+    const mapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(query)}`;
+    window.open(mapsUrl, "_blank");
+  };
+
+  const searchRestaurants = async (query: string) => {
+    if (!query || query.length < 3) {
+      setSearchResults([]);
+      return;
+    }
+
+    setIsSearching(true);
+    try {
+      const response = await fetch(
+        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
+          query + " restaurant"
+        )}&limit=10&addressdetails=1`
+      );
+      const data = await response.json();
+      setSearchResults(data);
+      setShowResults(true);
+    } catch (error) {
+      console.error("Error searching restaurants:", error);
+    } finally {
+      setIsSearching(false);
+    }
+  };
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchQuery) {
+        searchRestaurants(searchQuery);
+      } else {
+        setSearchResults([]);
+        setShowResults(false);
+      }
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      const target = event.target as HTMLElement;
+      if (!target.closest('.restaurant-search-container')) {
+        setShowResults(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const selectRestaurant = (place: PlaceResult) => {
+    setRestaurantName(place.name || place.display_name.split(",")[0]);
+    setAddress(place.display_name);
+    setLat(parseFloat(place.lat));
+    setLng(parseFloat(place.lon));
+    setSearchQuery("");
+    setSearchResults([]);
+    setShowResults(false);
   };
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -96,6 +190,7 @@ export function FoodReviewForm({
       },
       visitDate,
       quickNotes: quickNotes || undefined,
+      timesVisited: timesVisited || 1,
       detailedReview: mode === "detailed" ? detailedReview : undefined,
       priceRange: priceRange as 1 | 2 | 3 | 4 | undefined,
       dishesOrdered: dishesOrdered.length > 0 ? dishesOrdered : undefined,
@@ -161,8 +256,63 @@ export function FoodReviewForm({
           </div>
         </CardHeader>
         <CardContent className="space-y-4">
-          {/* Required Fields */}
-          <div className="space-y-4">
+          {/* Restaurant Search */}
+          <div className="restaurant-search-container p-4 bg-muted/50 rounded-lg border-2 border-dashed relative">
+            <label className="text-sm font-medium block mb-2">
+              🔍 Quick Search Restaurant
+            </label>
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onFocus={() => searchResults.length > 0 && setShowResults(true)}
+                placeholder="Search for a restaurant (e.g., 'Olive Garden New York')"
+                className="pl-9"
+              />
+              {isSearching && (
+                <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                  <div className="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full" />
+                </div>
+              )}
+              
+              {showResults && searchResults.length > 0 && (
+                <div className="absolute left-0 right-0 top-full mt-2 bg-background border rounded-lg shadow-lg max-h-80 overflow-y-auto z-50">
+                  {searchResults.map((place, index) => (
+                    <button
+                      key={index}
+                      type="button"
+                      onClick={() => selectRestaurant(place)}
+                      className="w-full px-4 py-3 text-left hover:bg-muted transition-colors border-b last:border-b-0"
+                    >
+                      <div className="font-medium text-sm">
+                        {place.name || place.display_name.split(",")[0]}
+                      </div>
+                      <div className="text-xs text-muted-foreground mt-1 line-clamp-1">
+                        {place.display_name}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+            
+            {showResults && searchResults.length === 0 && searchQuery.length >= 3 && !isSearching && (
+              <div className="mt-2 text-sm text-muted-foreground">
+                No restaurants found. Try a different search or fill in manually below.
+              </div>
+            )}
+            
+            <p className="text-xs text-muted-foreground mt-2">
+              💡 Start typing to search for restaurants and auto-fill all details
+            </p>
+          </div>
+
+          <div className="space-y-4 pt-2">
+            <div className="text-sm font-medium text-muted-foreground">
+              Or enter manually:
+            </div>
+            
             <div>
               <label className="text-sm font-medium">
                 Restaurant Name <span className="text-destructive">*</span>
@@ -216,22 +366,73 @@ export function FoodReviewForm({
                   variant="outline"
                   onClick={geocodeAddress}
                   size="sm"
+                  title="Auto-fill coordinates from address"
                 >
                   <MapPin className="h-4 w-4" />
                 </Button>
+                <Button
+                  type="button"
+                  variant="outline"
+                  onClick={openGoogleMaps}
+                  size="sm"
+                  title="Open Google Maps"
+                >
+                  🗺️
+                </Button>
               </div>
               <p className="text-xs text-muted-foreground mt-1">
-                Click the pin icon to auto-fill coordinates
+                Click <MapPin className="h-3 w-3 inline" /> to auto-fill coordinates or 🗺️ to open Google Maps
               </p>
             </div>
 
-            <div>
-              <label className="text-sm font-medium">Visit Date</label>
-              <Input
-                type="date"
-                value={visitDate}
-                onChange={(e) => setVisitDate(e.target.value)}
-              />
+            <div className="grid grid-cols-2 gap-2">
+              <div>
+                <label className="text-sm font-medium text-muted-foreground">
+                  Latitude
+                </label>
+                <Input
+                  type="number"
+                  step="any"
+                  value={lat}
+                  onChange={(e) => setLat(parseFloat(e.target.value) || 0)}
+                  placeholder="0.0"
+                  className="text-sm"
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium text-muted-foreground">
+                  Longitude
+                </label>
+                <Input
+                  type="number"
+                  step="any"
+                  value={lng}
+                  onChange={(e) => setLng(parseFloat(e.target.value) || 0)}
+                  placeholder="0.0"
+                  className="text-sm"
+                />
+              </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className="text-sm font-medium">Visit Date</label>
+                <Input
+                  type="date"
+                  value={visitDate}
+                  onChange={(e) => setVisitDate(e.target.value)}
+                />
+              </div>
+              <div>
+                <label className="text-sm font-medium">Times Visited</label>
+                <Input
+                  type="number"
+                  min="1"
+                  value={timesVisited}
+                  onChange={(e) => setTimesVisited(parseInt(e.target.value) || 1)}
+                  placeholder="1"
+                />
+              </div>
             </div>
 
             <div>
@@ -245,7 +446,6 @@ export function FoodReviewForm({
             </div>
           </div>
 
-          {/* Detailed Fields */}
           {mode === "detailed" && (
             <div className="space-y-4 pt-4 border-t">
               <div>

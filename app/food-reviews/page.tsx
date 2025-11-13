@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { useAuth } from "@/contexts/AuthContext";
 import { useFoodReviews } from "@/hooks/useFoodReviews";
@@ -24,9 +25,12 @@ import {
   LogIn,
   LogOut,
   Lock,
+  ArrowLeft,
+  Trash2,
 } from "lucide-react";
 
 export default function FoodReviewsPage() {
+  const searchParams = useSearchParams();
   const { isAdmin, login, logout, password } = useAuth();
   const {
     reviews,
@@ -54,6 +58,18 @@ export default function FoodReviewsPage() {
 
   const stats = getStats();
   const cuisineTypes = getCuisineTypes();
+
+  // Handle edit query parameter
+  useEffect(() => {
+    const editId = searchParams?.get('edit');
+    if (editId && isAdmin) {
+      const reviewToEdit = reviews.find(r => r.id === editId);
+      if (reviewToEdit) {
+        handleEditReview(reviewToEdit);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams, reviews, isAdmin]);
 
   const handleTitleTouchStart = () => {
     const timer = setTimeout(() => {
@@ -216,7 +232,29 @@ export default function FoodReviewsPage() {
 
   if (showForm) {
     return (
-      <div className="container max-w-4xl mx-auto px-4 py-8">
+      <div className="container max-w-4xl mx-auto px-4 py-8 pt-24 pb-24 md:pb-8">
+        {/* Form Header Actions */}
+        <div className="flex items-center justify-between mb-6">
+          <Button
+            variant="outline"
+            onClick={handleCancelForm}
+            className="gap-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+            Back to Reviews
+          </Button>
+          {editingReview && (
+            <Button
+              variant="outline"
+              onClick={() => handleDeleteReview(editingReview.id)}
+              className="gap-2 text-destructive hover:text-destructive hover:bg-destructive/10"
+            >
+              <Trash2 className="h-4 w-4" />
+              <span className="hidden sm:inline">Delete Review</span>
+            </Button>
+          )}
+        </div>
+
         <FoodReviewForm
           review={editingReview}
           onSubmit={handleSubmitReview}

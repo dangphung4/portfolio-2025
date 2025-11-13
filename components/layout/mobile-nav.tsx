@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { Home, User, Code, Mail } from "lucide-react"
+import { Home, User, Code, Mail, UtensilsCrossed } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { motion } from "framer-motion"
 
@@ -39,6 +39,7 @@ export default function MobileNav() {
     { name: "Home", icon: Home, href: "/" },
     { name: "Profile", icon: User, href: "/profile" },
     { name: "Projects", icon: Code, href: "/projects" },
+    { name: "Food", icon: UtensilsCrossed, href: "/food-reviews" },
     { name: "Contact", icon: Mail, href: "/contact" },
   ]
 

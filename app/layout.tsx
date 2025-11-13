@@ -3,6 +3,7 @@ import type React from "react";
 import "@/app/globals.css";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { AuthProvider } from "@/contexts/AuthContext";
 import Navbar from "@/components/layout/navbar";
 import MobileNav from "@/components/layout/mobile-nav";
 import Footer from "@/components/layout/footer";
@@ -79,10 +80,12 @@ children,
           enableSystem
           disableTransitionOnChange
         >
-          <Navbar />
-          {children}
-          <MobileNav />
-          <Footer />
+          <AuthProvider>
+            <Navbar />
+            {children}
+            <MobileNav />
+            <Footer />
+          </AuthProvider>
         </ThemeProvider>
       </body>
     </html>

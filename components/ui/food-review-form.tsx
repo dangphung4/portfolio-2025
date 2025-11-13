@@ -10,6 +10,7 @@ import { Badge } from "./badge";
 import { Card, CardContent, CardHeader, CardTitle } from "./card";
 import { X, Plus, MapPin, Search } from "lucide-react";
 import { ImageUpload } from "./image-upload";
+import { LocationMapPreview } from "./location-map-preview";
 
 interface PlaceResult {
   display_name: string;
@@ -412,6 +413,20 @@ export function FoodReviewForm({
                   className="text-sm"
                 />
               </div>
+            </div>
+
+            {/* Map Preview */}
+            <div>
+              <label className="text-sm font-medium block mb-2">
+                📍 Location Preview
+              </label>
+              <LocationMapPreview
+                address={address}
+                lat={lat}
+                lng={lng}
+                restaurantName={restaurantName}
+                height="250px"
+              />
             </div>
 
             <div className="grid grid-cols-2 gap-4">

@@ -16,7 +16,6 @@ import {
   Heart,
   Edit,
   Trash2,
-  ExternalLink,
   DollarSign,
   ThumbsUp,
   Share2,
@@ -24,6 +23,7 @@ import {
 } from "lucide-react";
 import { useAuth } from "@/contexts/AuthContext";
 import { useFoodReviews } from "@/hooks/useFoodReviews";
+import { LocationMapPreview } from "@/components/ui/location-map-preview";
 
 // Add JSON-LD structured data
 function generateReviewStructuredData(review: FoodReview) {
@@ -101,13 +101,6 @@ export default function FoodReviewDetailPage({
   const getPriceDisplay = (priceRange?: number) => {
     if (!priceRange) return null;
     return "$".repeat(priceRange);
-  };
-
-  const handleMapClick = () => {
-    const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      review.location.address
-    )}`;
-    window.open(mapsUrl, "_blank");
   };
 
   const handleEdit = () => {
@@ -274,20 +267,20 @@ export default function FoodReviewDetailPage({
                 </div>
               </div>
 
-              {/* Location */}
-              <button
-                onClick={handleMapClick}
-                className="flex items-start gap-3 text-muted-foreground hover:text-foreground transition-colors w-full text-left p-3 rounded-lg hover:bg-muted/50 group"
-              >
-                <MapPin className="h-5 w-5 mt-0.5 flex-shrink-0 group-hover:text-primary" />
-                <div className="flex-1">
-                  <p className="font-medium">{review.location.address}</p>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    Click to open in Google Maps
-                  </p>
+              {/* Location with Map */}
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <h2 className="text-lg font-semibold">Location</h2>
                 </div>
-                <ExternalLink className="h-4 w-4 mt-1 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </button>
+                <LocationMapPreview
+                  address={review.location.address}
+                  lat={review.location.lat}
+                  lng={review.location.lng}
+                  restaurantName={review.restaurantName}
+                  height="350px"
+                />
+              </div>
 
                {/* Visit Date & Times Visited */}
                <div className="flex flex-wrap gap-4">

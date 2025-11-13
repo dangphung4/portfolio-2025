@@ -8,7 +8,7 @@ import { useFoodReviews } from "@/hooks/useFoodReviews";
 import { FoodReview } from "@/lib/config";
 import { FoodReviewCard } from "@/components/ui/food-review-card";
 import { FoodReviewForm } from "@/components/ui/food-review-form";
-import { RestaurantLocationsList } from "@/components/ui/food-reviews-map";
+import { FoodReviewsMap, RestaurantLocationsList } from "@/components/ui/food-reviews-map";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
@@ -52,6 +52,7 @@ function FoodReviewsContent() {
   const [sortBy, setSortBy] = useState<"rating" | "date" | "name">("date");
   const [showFavoritesOnly, setShowFavoritesOnly] = useState(false);
   const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
+  const [selectedMapReview, setSelectedMapReview] = useState<FoodReview | null>(null);
   const [tapCount, setTapCount] = useState(0);
   const [tapTimeout, setTapTimeout] = useState<NodeJS.Timeout | null>(null);
 
@@ -582,8 +583,46 @@ function FoodReviewsContent() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.3 }}
+            className="space-y-6"
           >
-            <RestaurantLocationsList reviews={filteredAndSortedReviews} />
+            {/* Interactive Map View */}
+            <FoodReviewsMap
+              reviews={filteredAndSortedReviews}
+              selectedReview={selectedMapReview}
+              onReviewSelect={setSelectedMapReview}
+            />
+            
+            {/* Selected Review Card */}
+            {selectedMapReview && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <h3 className="text-xl font-semibold">Selected Location</h3>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => setSelectedMapReview(null)}
+                  >
+                    Clear Selection
+                  </Button>
+                </div>
+                <FoodReviewCard
+                  review={selectedMapReview}
+                  onEdit={isAdmin ? handleEditReview : undefined}
+                  onDelete={isAdmin ? handleDeleteReview : undefined}
+                  onToggleFavorite={isAdmin ? toggleFavorite : undefined}
+                />
+              </motion.div>
+            )}
+
+            {/* List View Fallback */}
+            <div className="pt-4">
+              <h3 className="text-lg font-semibold mb-4">All Locations</h3>
+              <RestaurantLocationsList reviews={filteredAndSortedReviews} />
+            </div>
           </motion.div>
         )}
       </div>

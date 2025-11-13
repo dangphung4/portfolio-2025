@@ -205,6 +205,7 @@ export const config = {
     { title: "Home", url: "/" },
     { title: "Profile", url: "/profile" },
     { title: "Projects", url: "/projects" },
+    { title: "Food Reviews", url: "/food-reviews" },
     {
       title: "Resume",
       url: "https://drive.google.com/file/d/1gd8QS_RRC9odaexai_qGo5jsYp1IySns/view?usp=sharing",
@@ -428,7 +429,40 @@ export const config = {
       link: "https://www.linkedin.com/in/jason-taylor-308780281/",
     },
   ],
+  foodReviews: [] as FoodReview[], // Will be populated via local storage for CRUD functionality
 };
+
+// Types for Food Reviews feature
+export interface FoodReview {
+  id: string;
+  restaurantName: string;
+  cuisineType: string;
+  rating: number; // 1-5 stars
+
+  // Location for Google Maps integration
+  location: {
+    address: string;
+    lat: number;
+    lng: number;
+  };
+
+  // Quick review fields (minimal - for fast entries)
+  visitDate: string; // ISO date string
+  quickNotes?: string; // Optional brief thoughts
+
+  // Detailed review fields (optional - can be added/updated later)
+  dishesOrdered?: string[]; // Array of dish names
+  detailedReview?: string; // In-depth review text
+  priceRange?: 1 | 2 | 3 | 4; // $ to $$$$
+  images?: string[]; // Array of image URLs/paths
+  tags?: string[]; // e.g., "Vegetarian-friendly", "Date night", "Family-friendly"
+
+  // Metadata
+  createdAt: string; // ISO date string
+  updatedAt: string; // ISO date string
+  isFavorite?: boolean; // Mark as top place
+  wouldRecommend?: boolean;
+}
 
 function getYearsOfExperience(startDate: Date) {
   try {

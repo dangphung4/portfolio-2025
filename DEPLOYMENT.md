@@ -26,11 +26,15 @@
    - Build Command: `npm run build` (auto-set)
    - Output Directory: `.next` (auto-set)
 
-4. **Add Environment Variable**
+4. **Add Environment Variables**
    - Click "Environment Variables"
-   - Add variable:
+   - Add required variables:
      - **Name**: `BLOB_READ_WRITE_TOKEN`
      - **Value**: `vercel_blob_rw_wFjURVBnFINO2Piy_BCaJI1j89Y3Sn1H6XtcAshmmvgRyht`
+   - Add optional variables for enhanced features:
+     - **Name**: `NEXT_PUBLIC_GOOGLE_MAPS_API_KEY` (Optional - for better restaurant search)
+     - **Value**: Your Google Maps API key from [Google Cloud Console](https://console.cloud.google.com/google/maps-apis)
+     - **Note**: Without this, the app will use OpenStreetMap (free alternative)
    - Apply to: **All environments** (Production, Preview, Development)
 
 5. **Deploy!**

@@ -253,7 +253,7 @@ export default function FoodReviewsPage() {
           className="text-center space-y-3 sm:space-y-4 relative"
         >
           {/* Admin/Logout Button - Top Right */}
-          <div className="absolute top-0 right-0 sm:right-4 z-50">
+          <div className="absolute top-0 right-0 sm:right-4 z-[100]">
             {isAdmin ? (
               <Button
                 variant="ghost"

@@ -27,6 +27,19 @@ interface PlaceResult {
   type?: string;
 }
 
+interface GooglePlace {
+  place_id: string;
+  name: string;
+  formatted_address: string;
+  geometry: {
+    location: {
+      lat: number;
+      lng: number;
+    };
+  };
+  types: string[];
+}
+
 interface FoodReviewFormProps {
   review?: FoodReview | null;
   onSubmit: (review: FoodReview) => void;
@@ -72,9 +85,10 @@ export function FoodReviewForm({
   );
   const [timesVisited, setTimesVisited] = useState(review?.timesVisited || 1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [searchResults, setSearchResults] = useState<PlaceResult[]>([]);
+  const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showResults, setShowResults] = useState(false);
+  const [searchSource, setSearchSource] = useState<'google' | 'openstreetmap' | null>(null);
 
   const geocodeAddress = async () => {
     if (!address) {
@@ -113,23 +127,32 @@ export function FoodReviewForm({
   };
 
   const searchRestaurants = async (query: string) => {
-    if (!query || query.length < 3) {
+    if (!query || query.length < 2) {
       setSearchResults([]);
+      setSearchSource(null);
       return;
     }
 
     setIsSearching(true);
     try {
       const response = await fetch(
-        `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(
-          query + " restaurant"
-        )}&limit=10&addressdetails=1`
+        `/api/places/search?query=${encodeURIComponent(query)}`
       );
       const data = await response.json();
-      setSearchResults(data);
-      setShowResults(true);
+      
+      if (data.results && data.results.length > 0) {
+        setSearchResults(data.results);
+        setSearchSource(data.results[0].source);
+        setShowResults(true);
+      } else {
+        setSearchResults([]);
+        setSearchSource(null);
+        setShowResults(false);
+      }
     } catch (error) {
       console.error("Error searching restaurants:", error);
+      setSearchResults([]);
+      setSearchSource(null);
     } finally {
       setIsSearching(false);
     }
@@ -141,9 +164,10 @@ export function FoodReviewForm({
         searchRestaurants(searchQuery);
       } else {
         setSearchResults([]);
+        setSearchSource(null);
         setShowResults(false);
       }
-    }, 500);
+    }, 300); // Reduced debounce for faster response
 
     return () => clearTimeout(timer);
   }, [searchQuery]);
@@ -160,13 +184,66 @@ export function FoodReviewForm({
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  const selectRestaurant = (place: PlaceResult) => {
-    setRestaurantName(place.name || place.display_name.split(",")[0]);
-    setAddress(place.display_name);
-    setLat(parseFloat(place.lat));
-    setLng(parseFloat(place.lon));
+  // Keyboard shortcuts for faster form submission
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Cmd/Ctrl + Enter to submit form
+      if ((e.metaKey || e.ctrlKey) && e.key === 'Enter') {
+        e.preventDefault();
+        const form = document.querySelector('form');
+        if (form) {
+          form.requestSubmit();
+        }
+      }
+      
+      // Cmd/Ctrl + K to focus search
+      if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
+        e.preventDefault();
+        const searchInput = document.querySelector('.restaurant-search-container input');
+        if (searchInput instanceof HTMLInputElement) {
+          searchInput.focus();
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const selectRestaurant = (place: any) => {
+    setRestaurantName(place.name);
+    setAddress(place.address);
+    setLat(typeof place.lat === 'number' ? place.lat : parseFloat(place.lat));
+    setLng(typeof place.lng === 'number' ? place.lng : parseFloat(place.lng));
+    
+    // Try to auto-detect cuisine from place types
+    if (place.types && Array.isArray(place.types)) {
+      const cuisineMap: { [key: string]: string } = {
+        'chinese_restaurant': 'Chinese',
+        'indian_restaurant': 'Indian',
+        'italian_restaurant': 'Italian',
+        'japanese_restaurant': 'Japanese',
+        'mexican_restaurant': 'Mexican',
+        'thai_restaurant': 'Thai',
+        'french_restaurant': 'French',
+        'american_restaurant': 'American',
+        'korean_restaurant': 'Korean',
+        'vietnamese_restaurant': 'Vietnamese',
+        'mediterranean_restaurant': 'Mediterranean',
+        'greek_restaurant': 'Greek',
+      };
+      
+      for (const type of place.types) {
+        if (cuisineMap[type]) {
+          setCuisineType(cuisineMap[type]);
+          break;
+        }
+      }
+    }
+    
     setSearchQuery("");
     setSearchResults([]);
+    setSearchSource(null);
     setShowResults(false);
   };
 
@@ -255,21 +332,33 @@ export function FoodReviewForm({
               </Button>
             </div>
           </div>
+          {/* Keyboard shortcuts hint */}
+          <div className="text-xs text-muted-foreground mt-2 hidden sm:block">
+            💡 Tips: <kbd className="px-1.5 py-0.5 rounded bg-muted border text-xs">⌘K</kbd> to search, <kbd className="px-1.5 py-0.5 rounded bg-muted border text-xs">⌘↵</kbd> to save
+          </div>
         </CardHeader>
         <CardContent className="space-y-4">
           {/* Restaurant Search */}
           <div className="restaurant-search-container p-4 bg-muted/50 rounded-lg border-2 border-dashed relative">
-            <label className="text-sm font-medium block mb-2">
-              🔍 Quick Search Restaurant
-            </label>
+            <div className="flex items-center justify-between mb-2">
+              <label className="text-sm font-medium">
+                🔍 Quick Search Restaurant
+              </label>
+              {searchSource && (
+                <span className="text-xs px-2 py-0.5 rounded bg-primary/10 text-primary">
+                  {searchSource === 'google' ? '🗺️ Google Maps' : '🌍 OpenStreetMap'}
+                </span>
+              )}
+            </div>
             <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => searchResults.length > 0 && setShowResults(true)}
-                placeholder="Search for a restaurant (e.g., 'Olive Garden New York')"
+                placeholder="Type restaurant name (e.g., 'Olive Garden' or 'pizza near me')"
                 className="pl-9"
+                autoComplete="off"
               />
               {isSearching && (
                 <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
@@ -281,16 +370,25 @@ export function FoodReviewForm({
                 <div className="absolute left-0 right-0 top-full mt-2 bg-background border rounded-lg shadow-lg max-h-80 overflow-y-auto z-50">
                   {searchResults.map((place, index) => (
                     <button
-                      key={index}
+                      key={place.id || index}
                       type="button"
                       onClick={() => selectRestaurant(place)}
                       className="w-full px-4 py-3 text-left hover:bg-muted transition-colors border-b last:border-b-0"
                     >
-                      <div className="font-medium text-sm">
-                        {place.name || place.display_name.split(",")[0]}
-                      </div>
-                      <div className="text-xs text-muted-foreground mt-1 line-clamp-1">
-                        {place.display_name}
+                      <div className="flex items-start justify-between gap-2">
+                        <div className="flex-1 min-w-0">
+                          <div className="font-medium text-sm flex items-center gap-2">
+                            {place.name}
+                            {place.rating && (
+                              <span className="text-xs text-muted-foreground">
+                                ⭐ {place.rating}
+                              </span>
+                            )}
+                          </div>
+                          <div className="text-xs text-muted-foreground mt-1 line-clamp-2">
+                            {place.address}
+                          </div>
+                        </div>
                       </div>
                     </button>
                   ))}
@@ -298,14 +396,14 @@ export function FoodReviewForm({
               )}
             </div>
             
-            {showResults && searchResults.length === 0 && searchQuery.length >= 3 && !isSearching && (
+            {showResults && searchResults.length === 0 && searchQuery.length >= 2 && !isSearching && (
               <div className="mt-2 text-sm text-muted-foreground">
                 No restaurants found. Try a different search or fill in manually below.
               </div>
             )}
             
             <p className="text-xs text-muted-foreground mt-2">
-              💡 Start typing to search for restaurants and auto-fill all details
+              💡 Start typing (just 2 letters!) to search and auto-fill all details instantly
             </p>
           </div>
 
@@ -327,7 +425,7 @@ export function FoodReviewForm({
             </div>
 
             <div>
-              <label className="text-sm font-medium">
+              <label className="text-sm font-medium block mb-2">
                 Cuisine Type <span className="text-destructive">*</span>
               </label>
               <Input
@@ -336,18 +434,54 @@ export function FoodReviewForm({
                 placeholder="e.g., Italian, Mexican, Japanese"
                 required
               />
+              {/* Quick cuisine selection buttons for mobile */}
+              <div className="flex flex-wrap gap-1.5 mt-2">
+                {['Italian', 'Mexican', 'Chinese', 'Japanese', 'American', 'Thai', 'Indian', 'Korean'].map((cuisine) => (
+                  <button
+                    key={cuisine}
+                    type="button"
+                    onClick={() => setCuisineType(cuisine)}
+                    className={`text-xs px-2 py-1 rounded border transition-colors ${
+                      cuisineType === cuisine 
+                        ? 'bg-primary text-primary-foreground border-primary' 
+                        : 'bg-background hover:bg-muted border-border'
+                    }`}
+                  >
+                    {cuisine}
+                  </button>
+                ))}
+              </div>
             </div>
 
             <div>
               <label className="text-sm font-medium block mb-2">
                 Rating <span className="text-destructive">*</span>
               </label>
-              <StarRating
-                rating={rating}
-                interactive
-                onRatingChange={setRating}
-                size={32}
-              />
+              <div className="flex items-center gap-4">
+                <StarRating
+                  rating={rating}
+                  interactive
+                  onRatingChange={setRating}
+                  size={32}
+                />
+                {/* Quick rating buttons for easier mobile selection */}
+                <div className="flex gap-1 sm:hidden">
+                  {[1, 2, 3, 4, 5].map((value) => (
+                    <button
+                      key={value}
+                      type="button"
+                      onClick={() => setRating(value)}
+                      className={`text-sm px-2.5 py-1 rounded border transition-colors ${
+                        rating === value 
+                          ? 'bg-primary text-primary-foreground border-primary font-medium' 
+                          : 'bg-background hover:bg-muted border-border'
+                      }`}
+                    >
+                      {value}
+                    </button>
+                  ))}
+                </div>
+              </div>
             </div>
 
             <div>

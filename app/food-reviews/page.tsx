@@ -7,7 +7,6 @@ import { FoodReview } from "@/lib/config";
 import { FoodReviewCard } from "@/components/ui/food-review-card";
 import { FoodReviewForm } from "@/components/ui/food-review-form";
 import { RestaurantLocationsList } from "@/components/ui/food-reviews-map";
-import { AuthGate } from "@/components/ui/auth-gate";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -154,14 +153,12 @@ export default function FoodReviewsPage() {
   if (showForm) {
     return (
       <div className="container max-w-4xl mx-auto px-4 py-8">
-        <AuthGate action={editingReview ? "edit this review" : "add a review"}>
-          <FoodReviewForm
-            review={editingReview}
-            onSubmit={handleSubmitReview}
-            onCancel={handleCancelForm}
-            mode={formMode}
-          />
-        </AuthGate>
+        <FoodReviewForm
+          review={editingReview}
+          onSubmit={handleSubmitReview}
+          onCancel={handleCancelForm}
+          mode={formMode}
+        />
       </div>
     );
   }

@@ -1,0 +1,41 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model FoodReview {
+  id              String   @id @default(cuid())
+  restaurantName  String
+  cuisineType     String
+  rating          Int
+
+  // Location
+  address         String
+  lat             Float
+  lng             Float
+
+  // Review content
+  visitDate       DateTime
+  quickNotes      String?
+  detailedReview  String?
+
+  // Details
+  priceRange      Int?
+  dishesOrdered   String[] // Array of dishes
+  tags            String[] // Array of tags
+  images          String[] // Array of image URLs
+
+  // Metadata
+  isFavorite      Boolean  @default(false)
+  wouldRecommend  Boolean  @default(false)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([cuisineType])
+  @@index([rating])
+  @@index([isFavorite])
+}

@@ -3,73 +3,105 @@
 import { useState, useEffect } from "react";
 import { FoodReview } from "@/lib/config";
 
-const STORAGE_KEY = "food-reviews";
-
-export function useFoodReviews() {
+export function useFoodReviews(password?: string | null) {
   const [reviews, setReviews] = useState<FoodReview[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Load reviews from local storage on mount
+  // Load reviews from API
   useEffect(() => {
-    const loadReviews = () => {
-      try {
-        const stored = localStorage.getItem(STORAGE_KEY);
-        if (stored) {
-          const parsed = JSON.parse(stored);
-          setReviews(parsed);
-        }
-      } catch (error) {
-        console.error("Error loading reviews:", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    loadReviews();
+    fetchReviews();
   }, []);
 
-  // Save reviews to local storage whenever they change
-  const saveReviews = (updatedReviews: FoodReview[]) => {
+  const fetchReviews = async () => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(updatedReviews));
-      setReviews(updatedReviews);
+      const response = await fetch("/api/reviews");
+      if (response.ok) {
+        const data = await response.json();
+        setReviews(data);
+      }
     } catch (error) {
-      console.error("Error saving reviews:", error);
+      console.error("Error loading reviews:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   // Create a new review
-  const createReview = (review: FoodReview) => {
-    const newReviews = [...reviews, review];
-    saveReviews(newReviews);
+  const createReview = async (review: FoodReview) => {
+    try {
+      const response = await fetch("/api/reviews", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-password": password || "",
+        },
+        body: JSON.stringify(review),
+      });
+
+      if (response.ok) {
+        await fetchReviews();
+      } else {
+        throw new Error("Failed to create review");
+      }
+    } catch (error) {
+      console.error("Error creating review:", error);
+      throw error;
+    }
   };
 
   // Update an existing review
-  const updateReview = (updatedReview: FoodReview) => {
-    const newReviews = reviews.map((review) =>
-      review.id === updatedReview.id ? updatedReview : review
-    );
-    saveReviews(newReviews);
+  const updateReview = async (updatedReview: FoodReview) => {
+    try {
+      const response = await fetch(`/api/reviews/${updatedReview.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "x-admin-password": password || "",
+        },
+        body: JSON.stringify(updatedReview),
+      });
+
+      if (response.ok) {
+        await fetchReviews();
+      } else {
+        throw new Error("Failed to update review");
+      }
+    } catch (error) {
+      console.error("Error updating review:", error);
+      throw error;
+    }
   };
 
   // Delete a review
-  const deleteReview = (id: string) => {
-    const newReviews = reviews.filter((review) => review.id !== id);
-    saveReviews(newReviews);
+  const deleteReview = async (id: string) => {
+    try {
+      const response = await fetch(`/api/reviews/${id}`, {
+        method: "DELETE",
+        headers: {
+          "x-admin-password": password || "",
+        },
+      });
+
+      if (response.ok) {
+        await fetchReviews();
+      } else {
+        throw new Error("Failed to delete review");
+      }
+    } catch (error) {
+      console.error("Error deleting review:", error);
+      throw error;
+    }
   };
 
   // Toggle favorite status
-  const toggleFavorite = (id: string) => {
-    const newReviews = reviews.map((review) =>
-      review.id === id
-        ? {
-            ...review,
-            isFavorite: !review.isFavorite,
-            updatedAt: new Date().toISOString(),
-          }
-        : review
-    );
-    saveReviews(newReviews);
+  const toggleFavorite = async (id: string) => {
+    const review = reviews.find((r) => r.id === id);
+    if (review) {
+      await updateReview({
+        ...review,
+        isFavorite: !review.isFavorite,
+      });
+    }
   };
 
   // Get reviews by filter

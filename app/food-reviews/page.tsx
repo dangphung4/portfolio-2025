@@ -250,12 +250,10 @@ export default function FoodReviewsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="text-center space-y-3 sm:space-y-4"
+          className="text-center space-y-3 sm:space-y-4 relative"
         >
-          <div className="flex items-center justify-center gap-4">
-            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent px-4">
-              Food Reviews
-            </h1>
+          {/* Admin/Logout Button - Top Right */}
+          <div className="absolute top-0 right-0 sm:right-4">
             {isAdmin ? (
               <Button
                 variant="ghost"
@@ -263,8 +261,8 @@ export default function FoodReviewsPage() {
                 onClick={logout}
                 className="text-muted-foreground"
               >
-                <LogOut className="h-4 w-4 mr-2" />
-                Logout
+                <LogOut className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">Logout</span>
               </Button>
             ) : (
               <Button
@@ -272,11 +270,15 @@ export default function FoodReviewsPage() {
                 size="sm"
                 onClick={() => setShowLoginModal(true)}
               >
-                <LogIn className="h-4 w-4 mr-2" />
-                Admin
+                <LogIn className="h-4 w-4 sm:mr-2" />
+                <span className="hidden sm:inline">Admin</span>
               </Button>
             )}
           </div>
+
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent px-4">
+            Food Reviews
+          </h1>
           <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto px-4">
             My personal collection of restaurant reviews and food adventures.
             {isAdmin ? " (Admin Mode)" : ""}

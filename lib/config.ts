@@ -76,6 +76,18 @@ export const config = {
         ],
       },
       {
+        years: "August 2025 - December 2025",
+        title: "Software Engineering Intern",
+        company: "Todd Agriscience (Remote)",
+        logoUrl: "",
+        link: "https://www.linkedin.com/company/toddagriscience/",
+        contributions: [
+          "Architected product infrastructure and technical solutions for sustainable agriculture platform, focusing on scalability and best practices",
+          "Led comprehensive code reviews across development teams, ensuring code quality, maintainability, and adherence to industry standards",
+          "Guided engineering teams in implementing software best practices holistically, including design patterns, testing strategies, and documentation standards",
+        ],
+      },
+      {
         years: "Jan 2024 - October 2025",
         title: "Junior Software Engineer",
         company: "Recro Corporation (Remote)",

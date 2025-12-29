@@ -1,0 +1,14 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle with green agricultural theme -->
+  <circle cx="100" cy="100" r="95" fill="#2d5016" stroke="#4a7c2c" stroke-width="3"/>
+  
+  <!-- Inner circle for contrast -->
+  <circle cx="100" cy="100" r="80" fill="#3d6b20"/>
+  
+  <!-- Letter T in white -->
+  <text x="100" y="130" font-family="Arial, sans-serif" font-size="90" font-weight="bold" fill="white" text-anchor="middle">T</text>
+  
+  <!-- Small leaf accent -->
+  <path d="M 140 60 Q 150 50 160 60 Q 150 70 140 60 Z" fill="#7cb342" opacity="0.8"/>
+  <path d="M 40 60 Q 30 50 20 60 Q 30 70 40 60 Z" fill="#7cb342" opacity="0.8"/>
+</svg>

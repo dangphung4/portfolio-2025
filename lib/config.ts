@@ -79,7 +79,7 @@ export const config = {
         years: "August 2025 - December 2025",
         title: "Software Engineering Intern",
         company: "Todd Agriscience (Remote)",
-        logoUrl: "",
+        logoUrl: "/companies/todd-agriscience-logo.svg",
         link: "https://www.linkedin.com/company/toddagriscience/",
         contributions: [
           "Architected product infrastructure and led strategic technical direction for sustainable agriculture platform",

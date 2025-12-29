@@ -82,9 +82,9 @@ export const config = {
         logoUrl: "",
         link: "https://www.linkedin.com/company/toddagriscience/",
         contributions: [
-          "Architected product infrastructure and technical solutions for sustainable agriculture platform, focusing on scalability and best practices",
-          "Led comprehensive code reviews across development teams, ensuring code quality, maintainability, and adherence to industry standards",
-          "Guided engineering teams in implementing software best practices holistically, including design patterns, testing strategies, and documentation standards",
+          "Architected product infrastructure and technical solutions for sustainable agriculture platform, establishing scalable system design patterns",
+          "Conducted comprehensive code reviews across development teams, ensuring code quality, maintainability, and adherence to industry standards",
+          "Mentored engineering teams on software development practices, including design patterns, testing strategies, and documentation workflows",
         ],
       },
       {
